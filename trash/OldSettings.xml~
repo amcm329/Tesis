@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- En caso de meter idiomas, sería en la etiqueta entre selection y technique-->
+<!--Ver si se puede agregar fitness como operador-->
+<!-- (generic_id,nombre,ruta_completa (con clase),metodo)-->    
+<Features>
+     
+    <!--Técnicas de Selección-->
+    <Selection name="Operators.Selection.">
+
+             <Technique name="Roulette">
+                 <Class name="Roulette"/>
+                 <Method name="roulette"/>
+             </Technique>
+ 
+             <Technique name="Stochastic Universal Sampling">
+                 <Class name="StochasticUniversalSampling"/>
+                 <Method name="stochastic_universal_sampling"/>
+             </Technique>
+
+             <Technique name="Tournament">
+                 <Class name="Tournament"/>
+                 <Method_Name name="tournament"/>
+             </Technique>
+
+    </Selection>
+
+    <!--Técnicas de Cruza-->
+    <Crossover name="Operators.Crossover.">
+
+             <Technique name="N-Points Crossover">
+                 <Class name="NPointsCrossover"/>
+                 <Method name="n_points_crossover"/>
+             </Technique>
+
+             <Technique name="Uniform Crossover">
+                 <Class name="UniformCrossover"/>
+                 <Method name="uniform_crossover"/>
+             </Technique>
+
+             <Technique name="Real Crossover">
+                 <Class name="RealCrossover"/>
+                 <Method name="real_crossover"/>
+             </Technique>
+
+    </Crossover>
+
+    <!--Técnicas de Mutación-->  
+    <Mutation name="Operators.Mutation.">
+
+             <Technique name="Mutation">
+                 <Class name="Mutation"/> 
+                 <Method name="mutation"/>
+             </Technique>
+
+    </Mutation>
+
+    <!--Algoritmos-->
+    <MOEA name="Model.MOEA.">
+
+             <Technique name="V.E.G.A. (Vector Evaluated Genetic Algorithm)">
+                 <Class name="VEGA"/> 
+                 <Method_Name name="vega_algorithm"/>
+             </Technique>
+
+    </MOEA>
+
+</Features>

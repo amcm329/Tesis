@@ -1,0 +1,58 @@
+﻿Consideraciones a tomar en cuenta:
+
+Mi modelo sigue el razonamiento simplista, es decir, el programa, cada módulo, método hace lo menos posible que pueda.Además el desarrollo del programa se mantiene
+simplista, es decir, por ejemplo que bien se puede poner excepciones en todos lados para obtener un programa robusto, sin embargo sólo los pondré donde sea
+necesario.
+Utilicé python para las tripas porque con éste es más cómodo trabajar con arrays y strings (para la cruza, mutación) en este lenguaje y la interfaz en java por su
+poder de interfaces gráficas.
+
+
+El proceso es así:
+Desde Java se manda llamar los parámetros, los cuales se procesan en python, y después se grafican en java (en la misma interfaz).
+
+Por ahora funciona para funciones en R3
+
+
+Uso de Jython/Python:
+- Después de tanto intentar al fin he logrado que se importen módulos, sólo bastaba con agregarlos al path con la siguiente instrucción:
+
+                import sys
+                sys.path.append("src\\python_code\\")
+
+
+-No puede haber más de un __init()__, esto significa que en Python/Jython sólo puede haber un constructor.
+
+-Al momento de inicializar algunos datos en python tuve que asignarlos a alguna variable y no hacerlos vacíos, esto porque me generaba datos duplicados,
+aunque no sé con exactitud el por qué de eso.
+
+-Averiguar cuáles son las funciones que manejaría el evaluador (trigonométricas, logaritmo, etc).
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+En la clase Poblacion.py:
+-Se ha optado porque al Individuo se le pase el cromosoma porque es más barato desecharlo (al hijo) y crear un nuevo hijo a la hora de la cruza, mutación y elitismo. 
+Además se ha optado por una codificación binaria, por ahora.
+
+-Para la evaluación de funciones se evalúa una a la vez, por eso el método evalúa_funciones manda llamar al método evalúa_una_función.
+
+-La longitud de cada cromosoma se calcula automáticamente con base en la precisión decimal y los rangos de las variables de decisión.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+En la clase Operadores_Seleccion.py
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+En la clase Operadores_Cruza.py
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+En la clase Operadores_Mutacion.py
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Ver si las variables de decisión se llaman así.

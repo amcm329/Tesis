@@ -1,0 +1,27 @@
+#! /usr/bin/python
+#-*- coding: utf-8 -*-
+
+#Version 2.0
+#Author: Castillo Medina Aarón Martín.
+
+
+def verify_load_data_xml():
+    pass
+
+def verify_write_data_xml(data,category_name,technique_name,technique_class,technique_method):
+
+    if category_name in ["Fitness","Selection","Crossover","Mutation","MOEA"]
+
+       for element in data:
+           print element
+    
+    else:
+        return "ERROR: "
+
+def verify_delete_data_xml():
+    pass
+
+def verify_basic_algorithm_parameters():
+    pass
+
+

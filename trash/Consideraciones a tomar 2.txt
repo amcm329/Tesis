@@ -1,0 +1,8 @@
+["x^2+y^2","x^2*cos(y)"]
+[[-1,3],[-7,7]]
+
+VEGA moga nsga II espea II, (PAES o el del dr juan arturo RANK MOEA)
+justificarel hecho de que ze ahaya quitado por la revisión bibliográfica, en la cual yo puedo describir
+
+
+moga puede tener uchos dupoicados porque requiere de un archivo externo 
