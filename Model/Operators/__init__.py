@@ -4,5 +4,7 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-import Blackboard
-import Operators
+import Selection
+import Crossover
+import Mutation
+

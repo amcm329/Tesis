@@ -4,5 +4,8 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-import Blackboard
-import Operators
+import random as r
+
+def real_crossover(chromosome_a,chromosome_b,additional_options):
+    pass
+
