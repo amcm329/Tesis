@@ -11,17 +11,30 @@ import Population.Population as p
 
 class Community:
 
-      def __init__():
+      def __init__(self,representation_class,fitness_class,fitness_method,fitness_options):
+          self.__representation = representation
+          
 
       #------------------------------------------------
       def init_population():  
          #def create_population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra):
     #return p.Population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra)
+             """Método que inicializa una Población con base en el tamaño (número de Individuos)
+      el vector de funciones y el vector de rangos."""
+      def __initialize(self,chromosome_set):
+          for chromosome in chromosome_set:
+              self.__population.append(i.Individual(self.__representation,chromosome,self.__decimal_precision,self.__length_subchromosomes,self.__vector_functions,self.__vector_ranges))
+          
 
 
       #------------------------------------------------
-
+      
+      This evaluates and sorts population
       def evaluate_population():
+
+      def __assign_fitness(self,fitness_method,fitness_options):
+          getattr(st,selection_method)(population,fitness_options)
+                
           #Proportional fitness
           if fitness_mode == 0:
              self.__assign_proportional_fitness()                      
@@ -81,59 +94,12 @@ class Community:
       #-----------------------------------------------------------------------------------------------
 
 
-          
-"""Método que crea un cromosoma binario."""
-def __create_binary_chromosome(length_chromosome):
-    chromosome = []
-            
-    for x in range(0,length_chromosome):
-        number = r.randint(0,1)
-        chromosome.append(number)
-         
-    return chromosome
 
 
-def __create_float_point_chromosome(vector_ranges,decimal_precision):
-    chromosome = []
-    precision_string = "{0:." + str(decimal_precision) + "f}"
-    for my_range in vector_ranges:
-        lower_limit = my_range[0]
-        upper_limit = my_range[1]
-        number = r.uniform(lower_limit,upper_limit)
-        chromosome.append(float(precision_string.format(number)))
-
-    return chromosome
 
 
-"""Método que calcula la longitud de todos los subcromosomas. Para ello
-se hace uso del vector de rangos, así como de la precisión decimal."""
-#Binary use only
-def __calculate_length_subchromosomes(vector_ranges,decimal_precision):
-    true_decimal_precision = 10**decimal_precision
-    lower_limit = -1
-    upper_limit = -1
-    amount = -1
-    how_many_bits_around = -1
-    how_many_bits_real = -1
-    length_subchromosomes = []
-    #contador = 0
-    for my_range in vector_ranges:
-        #print "Hola",contador," ",my_range
-        #contador+=1
-        lower_limit = my_range[0]
-        upper_limit = my_range[1]
-        #print "Lower: ",lower_limit
-        #print "Upper: ",upper_limit 
-        amount = (upper_limit - lower_limit)*true_decimal_precision
-        #print "Amount: ",amount
-        how_many_bits_around = m.log(amount,2) 
-        #print "Mas o menos: ",how_many_bits_around
-        how_many_bits_real = int(m.ceil(how_many_bits_around))
-        #print "Real: ",how_many_bits_real
-        length_subchromosomes.append(how_many_bits_real)
-        #print "----------------------------------------------"
 
-    return length_subchromosomes
+
 
 
 
