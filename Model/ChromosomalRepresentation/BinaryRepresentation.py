@@ -5,22 +5,11 @@
 #Author: Castillo Medina Aarón Martín.
 
 
-"""Método que crea un cromosoma binario."""
-def create_binary_chromosome(length_chromosome):
-    chromosome = []
-            
-    for x in range(0,length_chromosome):
-        number = r.randint(0,1)
-        chromosome.append(number)
-         
-    return chromosome
-
-
-
 """Método que calcula la longitud de todos los subcromosomas. Para ello
 se hace uso del vector de rangos, así como de la precisión decimal."""
-#Binary use only
-def calculate_length_subchromosomes(vector_ranges,decimal_precision):
+def calculate_length_subchromosomes(calculation_options):
+    vector_ranges = calculation_options[0]
+    decimal_precision = calculation_options[1]
     true_decimal_precision = 10**decimal_precision
     lower_limit = -1
     upper_limit = -1
@@ -46,4 +35,20 @@ def calculate_length_subchromosomes(vector_ranges,decimal_precision):
         #print "----------------------------------------------"
 
     return length_subchromosomes
+
+
+
+"""Método que crea un cromosoma binario."""
+def create_chromosome(chromosome_options):
+    length_chromosome = chromosome_options[0]
+    chromosome = []
+            
+    for x in range(0,length_chromosome):
+        number = r.randint(0,1)
+        chromosome.append(number)
+         
+    return chromosome
+
+
+
 

@@ -11,7 +11,7 @@ import Population.Population as p
 
 class Community:
 
-      def __init__(self,representation_class,fitness_class,fitness_method,fitness_options):
+      def __init__(self,representation_class,representation_options,fitness_class,fitness_method,fitness_options):
           self.__representation = representation
           
 
@@ -19,11 +19,22 @@ class Community:
       def init_population():  
          #def create_population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra):
     #return p.Population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra)
+             """Método que inicializa una Población con base en el tamaño (número de Individuos)
+      el vector de funciones y el vector de rangos."""
+      def __initialize(self,chromosome_set):
+          for chromosome in chromosome_set:
+              self.__population.append(i.Individual(self.__representation,chromosome,self.__decimal_precision,self.__length_subchromosomes,self.__vector_functions,self.__vector_ranges))
+          
 
 
       #------------------------------------------------
-
+      
+      This evaluates and sorts population
       def evaluate_population():
+
+      def __assign_fitness(self,fitness_method,fitness_options):
+          getattr(st,selection_method)(population,fitness_options)
+                
           #Proportional fitness
           if fitness_mode == 0:
              self.__assign_proportional_fitness()                      

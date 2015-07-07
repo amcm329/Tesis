@@ -11,7 +11,7 @@ import Population.Population as p
 
 class Community:
 
-      def __init__(self,representation_class,fitness_class,fitness_method,fitness_options):
+      def __init__(self,representation_class,representation_options ,fitness_class,fitness_method,fitness_options):
           self.__representation = representation
           
 
