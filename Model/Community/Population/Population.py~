@@ -33,10 +33,6 @@ class Population:
           self.__total_fitness = [0]*self.__length_vector_functions
           self.__total_expected_values = [0]*self.__length_vector_functions
           
-          self.__initialize(chromosome_set)
-          self.__assign_fitness(fitness_mode,fitness_options_extra)
-          
-
   
           def _assign rest of the elements, despues de haberse evaluado las clases.
           for individual in self.__population:

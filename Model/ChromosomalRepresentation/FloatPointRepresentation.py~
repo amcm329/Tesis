@@ -5,10 +5,6 @@
 #Author: Castillo Medina Aarón Martín.
 
 
-def calculate_length_subchromosomes():
-    pass
-
-
 def create_float_point_chromosome(vector_ranges,decimal_precision):
     chromosome = []
     precision_string = "{0:." + str(decimal_precision) + "f}"
@@ -19,3 +15,7 @@ def create_float_point_chromosome(vector_ranges,decimal_precision):
         chromosome.append(float(precision_string.format(number)))
 
     return chromosome
+
+
+def calculate_length_subchromosomes():
+    pass

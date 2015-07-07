@@ -22,14 +22,13 @@ class Population:
           
           
           #valor que se usa muchas veces, por eso se pone como atributo.  
+          self.__population = []
           self.__length_vector_functions = len(vector_functions)
-
           self.__population_size = len(chromosome_set)
           self.__length_subchromosomes = length_subchromosomes
           self.__decimal_precision = decimal_precision
           self.__vector_functions = vector_functions
           self.__vector_ranges = vector_ranges          
-          self.__population = []
           self.__total_fitness = [0]*self.__length_vector_functions
           self.__total_expected_values = [0]*self.__length_vector_functions
           

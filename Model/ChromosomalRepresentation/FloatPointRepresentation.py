@@ -17,5 +17,5 @@ def create_float_point_chromosome(vector_ranges,decimal_precision):
     return chromosome
 
 
-def calculate_length_subchromosomes():
-    pass
+def calculate_length_subchromosomes(vector_ranges):
+    return [1]*len(vector_ranges)
