@@ -13,16 +13,18 @@ class Community:
 
       def __init__():
 
-      #------------------------------------------------
+   
       def init_population():  
-         #def create_population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra):
-    #return p.Population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra)
-
-
-      #------------------------------------------------
 
       def evaluate_population():
-          #Proportional fitness
+          pass
+
+      def elitism(self,parent_population,children_population,elitism_amount):
+          pass
+
+      self._
+
+#Proportional fitness
           if fitness_mode == 0:
              self.__assign_proportional_fitness()                      
 
@@ -43,44 +45,6 @@ class Community:
 
           else:
                return "ERROR. Class: Population. Method: assign_fitness. Message: Fitness not implemented yet." 
-
-          pass
-
-
-      #-----------------------------------------------------------------------------------------------
-
-      def elitism(self,parent_population,children_population,elitism_amount):
-           #calcular la posicion del peor individuo en el fitness mode  
-      def get_position_worst_individual(self,fitness_position):
-          pivot = self.__population[0]
-          position = 0
-          for x in range (1,self.__population_size):
-              provisional = self.__population[x]
-              if pivot.get_fitness(fitness_position) > provisional.get_fitness(fitness_position):
-                 pivot = provisional
-                 position = x
-
-          return position
-
-
-      #poner el mejor individuo en el fitness mode
-      def get_best_individual(self,fitness_position):
-          pivot = self.__population[0]
-          position = 0
-          for x in range (1,self.__population_size):
-              provisional = self.__population[x]
-              if pivot.get_fitness(fitness_position) < provisional.get_fitness(fitness_position):
-                 pivot = provisional
-                 position = x
-
-          return pivot
-             
-          pass
-
-
-      #-----------------------------------------------------------------------------------------------
-
-
           
 """Método que crea un cromosoma binario."""
 def __create_binary_chromosome(length_chromosome):
@@ -166,7 +130,41 @@ def create_chromosomes(representation,population_size,decimal_precision,vector_f
     return [my_chromosome_set,length_subchromosomes]
 
 
+def create_population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra):
+    return p.Population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra)
+
+
+      #calcular la posicion del peor individuo en el fitness mode  
+      def get_position_worst_individual(self,fitness_position):
+          pivot = self.__population[0]
+          position = 0
+          for x in range (1,self.__population_size):
+              provisional = self.__population[x]
+              if pivot.get_fitness(fitness_position) > provisional.get_fitness(fitness_position):
+                 pivot = provisional
+                 position = x
+
+          return position
+
+
+      #poner el mejor individuo en el fitness mode
+      def get_best_individual(self,fitness_position):
+          pivot = self.__population[0]
+          position = 0
+          for x in range (1,self.__population_size):
+              provisional = self.__population[x]
+              if pivot.get_fitness(fitness_position) < provisional.get_fitness(fitness_position):
+                 pivot = provisional
+                 position = x
+
+          return pivot
+             
      
+
+#Toda la mierda del blackboard y
+def blackboard(population):
+    pass
+
 """
 [chromosomes,length_subchromosomes] = create_chromosomes(0,8,3,["10*x+y","x*y","34*x-y"],[[-3,3],[-2,2]])
 #representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra   
