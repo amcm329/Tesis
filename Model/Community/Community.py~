@@ -49,12 +49,9 @@ class Community:
              for x in range (population_size):
                  chromosome = []
                  for length_subchromosome in length_subchromosomes:
-                     chromosome +=  getattr(st,"create_crhomosome)(length_subchromosome)
+                     chromosome +=  getattr(st,"create_crhomosome")(length_subchromosome)
                      population.add_individual()
            
-          
-
-
           except:
               population =  "ERROR. "
 

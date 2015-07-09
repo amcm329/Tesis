@@ -18,13 +18,13 @@ class Population:
       #There's no need for using the population size as a parameter, because we already have the chromosome_set.
       #The complete population flag will be used in the corresponding methods, not here.
       """Método para inicializar los elementos de la Poblacion."""
-      def __init__(self,decimal_precision,vector_functions,vector_ranges):
+      def __init__(self, population_size, length_subchromosomes, decimal_precision, vector_functions, vector_ranges):
           
           
           #valor que se usa muchas veces, por eso se pone como atributo.  
           self.__population = []
+          self.__population_size = population_size
           self.__length_vector_functions = len(vector_functions)
-          self.__population_size = len(chromosome_set)
           self.__length_subchromosomes = length_subchromosomes
           self.__decimal_precision = decimal_precision
           self.__vector_functions = vector_functions
@@ -33,7 +33,8 @@ class Population:
           self.__total_expected_values = [0]*self.__length_vector_functions
           
   
-          def _assign rest of the elements, despues de haberse evaluado las clases.
+
+      def _assign rest of the elements, despues de haberse evaluado las clases.
           for individual in self.__population:
               for x in range (self.__length_vector_functions):
                   #Assigning selection probability
@@ -64,7 +65,7 @@ class Population:
 
       #No lo estás evaluando, pero a la siguiente vuelta de la generación se evalúa.
       def add_individual(self,new_individual):
-          self.__population.append(new_individual)
+          self.__population.append(desde aqui agregar al individuo.new_individual)
 
      
       def print_population(self):
