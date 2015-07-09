@@ -18,7 +18,7 @@ class Population:
       #There's no need for using the population size as a parameter, because we already have the chromosome_set.
       #The complete population flag will be used in the corresponding methods, not here.
       """Método para inicializar los elementos de la Poblacion."""
-      def __init__(self,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges):
+      def __init__(self,decimal_precision,vector_functions,vector_ranges):
           
           
           #valor que se usa muchas veces, por eso se pone como atributo.  
@@ -63,8 +63,8 @@ class Population:
           return self.__population
 
       #No lo estás evaluando, pero a la siguiente vuelta de la generación se evalúa.
-      def set_individual(self,position,new_individual):
-          self.__population[position] = new_individual
+      def add_individual(self,new_individual):
+          self.__population.append(new_individual)
 
      
       def print_population(self):

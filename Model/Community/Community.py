@@ -8,15 +8,56 @@ import math as m
 import random as r
 import Population.Population as p
 
+representation,
+chromosome_set,
+length_subchromosomes,
+decimal_precision,
+vector_functions,
+vector_ranges,
+fitness_class,
+fitness_method,
+fitness_options
+
 
 class Community:
 
-      def __init__(self,representation_class,representation_options ,fitness_class,fitness_method,fitness_options):
-          self.__representation = representation
+      def __init__(self, population_size, representation_class, representation_options, fitness_class,
+                         fitness_method, fitness_options, decimal_precision, vector_functions, vector_ranges)):
+
+          self.__population_size = population_size
+          self.__representation_class = representation_class
+          self.__representation_options = representation_options
+          self.__decimal_precision = decimal_precision
+          self.__vector_functions = vector_functions
+          self.__vector_ranges = vector_ranges
+          self.__fitness_class = fitness_class
+          self.__fitness_method = fitness_method
+          self.__fitness_options = fitness_options
+          
+          
           
 
       #------------------------------------------------
-      def init_population():  
+      def init_population():
+          population = Population()
+
+          try:
+             st = __import__(self.__representation_class, globals(), locals(), ['object'], -1)
+             length_subchromosomes = getattr(st,"calculate_length_subcrhomosomes")(representation_options)              
+
+             
+             for x in range (population_size):
+                 chromosome = []
+                 for length_subchromosome in length_subchromosomes:
+                     chromosome +=  getattr(st,"create_crhomosome")(length_subchromosome)
+                     population.add_individual()
+           
+          except:
+              population =  "ERROR. "
+
+
+          return population
+
          #def create_population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra):
     #return p.Population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra)
              """Método que inicializa una Población con base en el tamaño (número de Individuos)
