@@ -10,17 +10,24 @@ import Controller.Controller as con
 
 
 def start_sequence():
+    variables = "Variables.xml"
+    functions = "Functions.xml"
+    features = "Features.xml"
+    settings = "Settings.xml"
+
+
     algorithm_class = ""
     algorithm_method = ""
 
     generations = 100   
     population_size = 20
     vector_functions = ["10*x+y","x*y","34*x-y"]
-    vector_ranges = [[-3,3],[-2,2]]
+    vector_ variables = [['x',[-3,3]],['y',[-2,2]]]
     decimal_precision = 4
-    representation = 0
+    representation_name  = "BinaryRepresentation "
+    representation_class = "BinaryRepresentation"
     
-    
+    #Cambiar fitness mode.
     fitness_mode = 2
     fitness_extra_options = []
 
@@ -39,7 +46,7 @@ def start_sequence():
 
     elithism = False
     
-    options = con.load_settings()
+    options = con.load_features(features)
     selection_code = ""
     crossover_code = ""
     mutation_code = ""
@@ -108,6 +115,7 @@ def start_sequence():
     """
     for option in options:
         print option
+
 
     #print con.save_settings("Mutation","Otro","aaron","Hola")
     #print con.delete_settings("Mutation","Otro","aaron","Hola")

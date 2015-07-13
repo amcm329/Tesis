@@ -17,4 +17,7 @@ def assign_normal_ranking_fitness(population):
               y += 1
 
     for z in range (population.get_length_vector_functions()):
-        population.set_total_fitness(z,total_fitness[z]) 
+        population.set_total_fitness(z,total_fitness[z])
+
+   
+    population.calculate_individuals_properties() 

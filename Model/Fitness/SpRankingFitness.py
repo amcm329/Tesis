@@ -17,3 +17,6 @@ def assign_sp_ranking_fitness(population,fitness_options):
   
     for z in range (population.get_length_vector_functions()):
           population.set_total_fitness(z,total_fitness[z]) 
+
+    population.calculate_individuals_properties()
+    

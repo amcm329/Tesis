@@ -23,11 +23,11 @@ def indent(element, level=0):
             element.tail = i
 
 
-def load_data_xml(document_name):
+def load_xml_features(features_filename):
     category_id = 1
     options = []
     path = os.path.dirname(__file__)
-    tree = et.parse(path + "/" + document_name)
+    tree = et.parse(path + "/" + features_filename)
     root = tree.getroot()
 
     for category in root:
@@ -47,20 +47,20 @@ def load_data_xml(document_name):
     return options
 
 #LISTO
-def write_data_xml(document_name,category_location,technique_name,technique_class,technique_method):
+def write_xml_features(features_filename,category_location,technique_name,technique_class,technique_method):
     path = os.path.dirname(__file__)
-    tree = et.parse(path + "/" + document_name)
+    tree = et.parse(path + "/" + features_filename)
     root = tree.getroot()
     category = root.find(category_location) 
     new_child = et.SubElement(category, "Technique name=\"" + technique_name + "\" class=\"" + technique_class + "\" method=\"" + technique_method + "\"")
     indent(root)
-    tree.write(path + "/" + document_name)
+    tree.write(path + "/" + features_filename)
    
 
 #En verifier verificar que el dato este antes de borrarlo, se usa con un load_settings y luego check.
-def delete_data_xml(document_name,category_location,technique_name,technique_class,technique_method):
+def delete_xml_features(features_filename,category_location,technique_name,technique_class,technique_method):
     path = os.path.dirname(__file__)
-    tree = et.parse(path + "/" + document_name)
+    tree = et.parse(path + "/" + features_filename)
     root = tree.getroot()
     category = root.find(category_location)
 
@@ -69,6 +69,4 @@ def delete_data_xml(document_name,category_location,technique_name,technique_cla
            category.remove(technique)
     
     indent(root)
-    tree.write(path + "/" + document_name)
-   
-   
+    tree.write(path + "/" + features_filename)

@@ -4,37 +4,60 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-import math as m
-import random as r
 import Individual as i
 
-falta el numero de elitismos.
-Conviene ordenar a los elementos por fitness para así hacer el elitismo de n n metodos.
-El elitismo hay que ponerlo en blackboard.
 
-
+#Complete population flag will be used in the corresponding methods, not here.
 class Population:
-      #fitness options, en caso de que se requiera se añaden elementos adicionales en fitness options.
-      #There's no need for using the population size as a parameter, because we already have the chromosome_set.
-      #The complete population flag will be used in the corresponding methods, not here.
       """Método para inicializar los elementos de la Poblacion."""
-      def __init__(self, population_size, length_subchromosomes, decimal_precision, vector_functions, vector_ranges):
-          
-          
-          #valor que se usa muchas veces, por eso se pone como atributo.  
+      def __init__(self,population_size,length_subchromosomes,vector_functions,vector_variables,available_expressions,decimal_precision):
           self.__population = []
           self.__population_size = population_size
-          self.__length_vector_functions = len(vector_functions)
           self.__length_subchromosomes = length_subchromosomes
-          self.__decimal_precision = decimal_precision
           self.__vector_functions = vector_functions
-          self.__vector_ranges = vector_ranges          
+          self.__vector_variables = vector_variables 
+          self.__available_expressions = available_expressions        
+          self.__decimal_precision = decimal_precision
+          
+          #valor que se usa muchas veces, por eso se pone como atributo.  
+          self.__length_vector_functions = len(vector_functions)
           self.__total_fitness = [0]*self.__length_vector_functions
           self.__total_expected_values = [0]*self.__length_vector_functions
-          
-  
 
-      def _assign rest of the elements, despues de haberse evaluado las clases.
+
+      def get_population(self):
+          return self.__population
+
+
+      def get_length_subchromosomes(self):
+          return self.__length_subchromosomes
+
+
+      def get_length_vector_functions(self):
+          return self.__length_vector_functions
+
+
+      def get_total_fitness(self,position):
+          return self.__total_fitness[position]
+
+
+      def set_total_fitness(self,position,value):
+          self.__total_fitness[position] = value
+
+
+      def get_total_expected_value(self,position):
+          return self.__total_expected_values[position]
+
+
+      def set_total_expected_value(self,position,value):
+          self.__total_expected_values[position] = value      
+
+     
+      def add_individual(self,complete_chromosome):
+          self.__population.append(i.Individual(complete_chromosome,self.__length_subchromosomes,self.__vector_functions,self.__available_expressions,self.__decimal_precision))
+          
+      
+      def calculate_individuals_properties(self):
           for individual in self.__population:
               for x in range (self.__length_vector_functions):
                   #Assigning selection probability
@@ -42,32 +65,22 @@ class Population:
                   #Assigning expected value.
                   individual.set_expected_value(x,individual.get_fitness(x)/(self.__total_fitness[x]/self.__population_size))
                   #Assigning total expected value
-                  self.__total_expected_values[x] += individual.get_expected_value(x)        
+                  self.__total_expected_values[x] += individual.get_expected_value(x)     
 
 
-      def get_length_vector_functions(self):
-          return self.__length_vector_functions
+      def fitness_compare(x, y):
+          if x > y:
+             return 1
+          elif x == y:
+             return 0
+      else:  #x < y
+          return -1
 
-      def get_population_size(self):
-          return self.__population_size
+      
+      def functions_compare(x,y):
+          pass      
 
-      def get_total_fitness(self,position):
-          return self.__total_fitness[position]
 
-      def set_total_fitness(self,position,value):
-          self.__total_fitness[position] = value
-
-      def get_total_expected_value(self,position):
-          return self.__total_expected_values[position]
-
-      def get_population(self):
-          return self.__population
-
-      #No lo estás evaluando, pero a la siguiente vuelta de la generación se evalúa.
-      def add_individual(self,new_individual):
-          self.__population.append(desde aqui agregar al individuo.new_individual)
-
-     
       def print_population(self):
           print "Total fitness: " + str(self.__total_fitness)
           print "Total expected value: " + str(self.__total_expected_values)

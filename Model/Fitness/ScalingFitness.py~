@@ -14,4 +14,5 @@ def assign_scaling_fitness(population,fitness_options):
               individual.set_fitness(x, alpha*individual.get_evaluated_function(x) + beta)
               total_fitness[x] += individual.get_fitness(x) 
      
-     
+    for y in range (population.get_length_vector_functions()):
+        population.set_total_fitness(y,total_fitness[y]) 

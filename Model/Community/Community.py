@@ -4,175 +4,91 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-import math as m
-import random as r
 import Population.Population as p
 
-representation,
-chromosome_set,
-length_subchromosomes,
-decimal_precision,
-vector_functions,
-vector_ranges,
-fitness_class,
-fitness_method,
-fitness_options
 
-
+#Cambiar nombre a length subchromosomes
 class Community:
-
-      def __init__(self, population_size, representation_class, representation_options, fitness_class,
-                         fitness_method, fitness_options, decimal_precision, vector_functions, vector_ranges)):
-
+      def __init__(self,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,representation_class,representation_options,fitness_class,fitness_method,fitness_options)):
           self.__population_size = population_size
+          self.__vector_functions = vector_functions
+          self.__vector_variables = vector_variables
+          self.__available_expressions = available_expressions
+          self.__decimal_precision = decimal_precision
           self.__representation_class = representation_class
           self.__representation_options = representation_options
-          self.__decimal_precision = decimal_precision
-          self.__vector_functions = vector_functions
-          self.__vector_ranges = vector_ranges
           self.__fitness_class = fitness_class
           self.__fitness_method = fitness_method
           self.__fitness_options = fitness_options
           
           
-          
-
-      #------------------------------------------------
-      def init_population():
-          population = Population()
-
+      def init_population(self):
+          population = []
+          chromosome = []
           try:
-             st = __import__(self.__representation_class, globals(), locals(), ['object'], -1)
-             length_subchromosomes = getattr(st,"calculate_length_subcrhomosomes")(representation_options)              
-
-             
-             for x in range (population_size):
-                 chromosome = []
-                 for length_subchromosome in length_subchromosomes:
-                     chromosome +=  getattr(st,"create_crhomosome")(length_subchromosome)
-                     population.add_individual()
+             rc = __import__(self.__representation_class, globals(), locals(), ['object'], -1)
+             length_subchromosomes = getattr(rc,"calculate_length_subchromosomes")(self.__decimal_precision,self.__vector_ranges)              
+             population = p.Population(self.__population_size,length_subchromosomes,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
+             for x in range (self.__population_size):
+                 complete_chromosome =  getattr(rc,"create_chromosome")(length_subchromosomes,self.__decimal_precision,self.__vector_ranges)
+                 population.add_individual(complete_chromosome)
            
           except:
-              population =  "ERROR. "
+              population =  "ERROR. Class: Community. Method: init_population. Message: Problem found with chromosomal representation"
 
 
           return population
 
-         #def create_population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra):
-    #return p.Population(representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra)
-             """Método que inicializa una Población con base en el tamaño (número de Individuos)
-      el vector de funciones y el vector de rangos."""
-      def __initialize(self,chromosome_set):
-          for chromosome in chromosome_set:
-              self.__population.append(i.Individual(self.__representation,chromosome,self.__decimal_precision,self.__length_subchromosomes,self.__vector_functions,self.__vector_ranges))
-          
 
 
       #------------------------------------------------
       
-      This evaluates and sorts population
-      def evaluate_population():
+      #This evaluates only functions
+      def evaluate_population_functions(self,population):
+          code = "OK"
+          complete_chromosome = ""
+          decision_variables = {}
+          length_subchromosomes = population.get_length_subchromosomes() 
+          try:
+              rc = __import__(self.__representation_class, globals(), locals(), ['object'], -1)
+              individuals = population.get_population
+              for individual in individuals:
+                  complete_chromosome = individual.get_complete_chromosome()          
+                  decision_variables = getattr(rc,"evaluate_subchromosomes")(complete_chromosome,length_subchromosomes,self.__vector_variables,self.__decimal_precision,self.__representation_options)
+                  individual.evaluate_functions(decision_variables)
 
-      def __assign_fitness(self,fitness_method,fitness_options):
-          getattr(st,selection_method)(population,fitness_options)
+          except:
+              code = "ERROR. Class: Community. Method: evaluate_population_functions. Message: Problem while evaluating functions"
+
+          return code 
+
+
+      def assign_population_fitness(self,population):
+          code = "OK"
+          try: 
+             fc = __import__(self.__fitness_class, globals(), locals(), ['object'], -1)
+             getattr(fc,fitness_method)(population,fitness_options)
                 
-          #Proportional fitness
-          if fitness_mode == 0:
-             self.__assign_proportional_fitness()                      
+          except:
+               return "ERROR. Class: Community. Method: assign_population_fitness. Message: Problem while assignating fitness" 
 
-          #Escalamiento fitness.
-          elif fitness_mode == 1:
-               alpha = fitness_options_extra[0]
-               beta = fitness_options_extra[1]
-               self.__assign_scaling_fitness(alpha,beta)        
-                         
-          #Ranking normal
-          elif fitness_mode == 2:
-               self.__assign_normal_ranking_fitness()
- 
-          #Ranking con sp (un poco pendiente)
-          elif fitness_mode == 3:
-               sp = fitness_options_extra[0]
-               self.__assign_sp_ranking_fitness(sp)
-
-          else:
-               return "ERROR. Class: Population. Method: assign_fitness. Message: Fitness not implemented yet." 
-
-          pass
+          return code
 
 
       #-----------------------------------------------------------------------------------------------
 
-      def elitism(self,parent_population,children_population,elitism_amount):
-           #calcular la posicion del peor individuo en el fitness mode  
-      def get_position_worst_individual(self,fitness_position):
-          pivot = self.__population[0]
-          position = 0
-          for x in range (1,self.__population_size):
-              provisional = self.__population[x]
-              if pivot.get_fitness(fitness_position) > provisional.get_fitness(fitness_position):
-                 pivot = provisional
-                 position = x
 
-          return position
-
-
-      #poner el mejor individuo en el fitness mode
-      def get_best_individual(self,fitness_position):
-          pivot = self.__population[0]
-          position = 0
-          for x in range (1,self.__population_size):
-              provisional = self.__population[x]
-              if pivot.get_fitness(fitness_position) < provisional.get_fitness(fitness_position):
-                 pivot = provisional
-                 position = x
-
-          return pivot
-             
+      #children[i] = parents[i]                     
+      def elitism(self,parents,children,position,elitism_amount):
+       
           pass
 
 
       #-----------------------------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-def create_chromosomes(representation,population_size,decimal_precision,vector_functions,vector_ranges):
-    my_chromosome_set = []
-    length_subchromosomes = []
-
-    #Create chromosomes 
-    """Se crea un cromosoma para cada Individuo."""
-    if representation == 0 or representation == 1:
-         length_my_complete_chromosome = 0
-
-         length_subchromosomes = __calculate_length_subchromosomes(vector_ranges,decimal_precision)
-
-         for value in length_subchromosomes:
-             length_my_complete_chromosome += value
-                  
-         for x in range (population_size):
-             my_chromosome_set.append(__create_binary_chromosome(length_my_complete_chromosome))
-
-    elif representation == 2:   
-         length_subchromosomes = [1]*len(vector_ranges)
-         for x in range (population_size): 
-             my_chromosome_set.append(__create_float_point_chromosome(vector_ranges,decimal_precision))
-
-    else:
-         return "ERROR. Class: BlackboardResponsible. Method: create_chromosomes. Message: Representation not implemented yet." 
-          
-    
-    return [my_chromosome_set,length_subchromosomes]
-
-
+      def disorder_population(self,population):
+      
      
 """
 [chromosomes,length_subchromosomes] = create_chromosomes(0,8,3,["10*x+y","x*y","34*x-y"],[[-3,3],[-2,2]])

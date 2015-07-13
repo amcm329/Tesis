@@ -15,3 +15,5 @@ def assign_proportional_fitness(population):
     for y in range (population.get_length_vector_functions()):
         population.set_total_fitness(y,total_fitness[y])
 
+    population.calculate_individuals_properties()
+

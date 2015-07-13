@@ -1,0 +1,28 @@
+<Features>
+   <Representation location="Model.ChromosomalRepresentation.">
+      <Technique name="Binary Representation" class="BinaryRepresentation" method="-"/>
+      <Technique name="Float Point Representation" class="FloatPointRepresentation" method="-"/>
+   </Representation>
+   <Fitness location="Model.Fitness.">
+      <Technique name="Proportional Fitness" class="ProportionalFitness" method="assign_proportional_fitness" />
+      <Technique name="Scaling Fitness" class="ScalingFitness" method="assing_scaling_fitness"/>
+      <Technique name="Normal Ranking Fitness" class="NormalRankingFitness" method="assign_normal_ranking_fitness" />
+      <Technique name="Sp Ranking Fitness" class="SpRankingFitness" method="assign_sp_ranking_fitness"/>
+   </Fitness>
+   <Selection location="Model.Operators.Selection.">
+      <Technique name="Roulette" class="Roulette" method="roulette"/>
+      <Technique name="Stochastic Universal Sampling" class="StochasticUniversalSampling" method="stochastic_universal_sampling" />
+      <Technique name="Tournament" class="Tournament" method="tournament" />
+   </Selection>
+   <Crossover location="Model.Operators.Crossover.">
+      <Technique name="N-Points Crossover" class="NPointsCrossover" method="n_points_crossover" />
+      <Technique name="Uniform Crossover" class="UniformCrossover" method="uniform_crossover" />
+      <Technique name="Real Crossover" class="RealCrossover" method="real_crossover" />
+   </Crossover>
+   <Mutation location="Model.Operators.Mutation.">
+      <Technique name="Mutation" class="Mutation" method="mutation" />
+   </Mutation>
+   <MOEA location="Model.MOEA.">
+      <Technique name="V.E.G.A. (Vector Evaluated Genetic Algorithm)" class="VEGA" method="vega_algorithm" />
+   </MOEA>
+</Features>
