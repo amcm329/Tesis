@@ -10,7 +10,7 @@ import Community.Community as com
 #No tiene completar population porque eso le corresponde al controlador, no a esto.
 #Verificar el caso de las poblaciones incompletas.
 #Verificar el caso de las selecciones incompletas. 
-#representation options = graycoding-
+#representation options = gray coding.
 def vega_algorithm(generations,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,representation_class,representation_options,fitness_class,fitness_method,fitness_options,selection_class,selection_method,selection_options,crossover_class,crossover_method,crossover_options,mutation_class,mutation_method,mutation_options,elithism_number):
     st = __import__(selection_class, globals(), locals(), ['object'], -1)
     ct = __import__(crossover_class, globals(), locals(), ['object'], -1)

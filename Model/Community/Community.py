@@ -80,7 +80,10 @@ class Community:
 
       #children[i] = parents[i]                     
       def elitism(self,parents,children,position,elitism_amount):
-       
+          estos metodos mandarlos llamar desde la poblacion, poniendo el metodo y la posicion como variable.
+          parents.get_population().sort(key=o.method_caller("get_fitness",position),reverse=True)
+          children.
+
           pass
 
 
@@ -88,7 +91,7 @@ class Community:
 
 
       def disorder_population(self,population):
-      
+          r.shuffle(population.get_population)
      
 """
 [chromosomes,length_subchromosomes] = create_chromosomes(0,8,3,["10*x+y","x*y","34*x-y"],[[-3,3],[-2,2]])

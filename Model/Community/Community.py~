@@ -7,9 +7,6 @@
 import Population.Population as p
 
 
-#falta el numero de elitismos.
-#Conviene ordenar a los elementos por fitness para así hacer el elitismo de n n metodos.
-#El elitismo hay que ponerlo en blackboard. 
 #Cambiar nombre a length subchromosomes
 class Community:
       def __init__(self,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,representation_class,representation_options,fitness_class,fitness_method,fitness_options)):
@@ -80,38 +77,18 @@ class Community:
 
       #-----------------------------------------------------------------------------------------------
 
-                          
-      def elitism(self,parents,children,elitism_amount):
-           #calcular la posicion del peor individuo en el fitness mode  
 
-      def get_position_worst_individual(self,fitness_position):
-          pivot = self.__population[0]
-          position = 0
-          for x in range (1,self.__population_size):
-              provisional = self.__population[x]
-              if pivot.get_fitness(fitness_position) > provisional.get_fitness(fitness_position):
-                 pivot = provisional
-                 position = x
-
-          return position
-
-
-      #poner el mejor individuo en el fitness mode
-      def get_best_individual(self,fitness_position):
-          pivot = self.__population[0]
-          position = 0
-          for x in range (1,self.__population_size):
-              provisional = self.__population[x]
-              if pivot.get_fitness(fitness_position) < provisional.get_fitness(fitness_position):
-                 pivot = provisional
-                 position = x
-
-          return pivot
-             
+      #children[i] = parents[i]                     
+      def elitism(self,parents,children,position,elitism_amount):
+       
           pass
 
 
       #-----------------------------------------------------------------------------------------------
+
+
+      def disorder_population(self,population):
+      
      
 """
 [chromosomes,length_subchromosomes] = create_chromosomes(0,8,3,["10*x+y","x*y","34*x-y"],[[-3,3],[-2,2]])
