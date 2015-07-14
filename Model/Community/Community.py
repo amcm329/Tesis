@@ -83,6 +83,7 @@ class Community:
           estos metodos mandarlos llamar desde la poblacion, poniendo el metodo y la posicion como variable.
           parents.get_population().sort(key=o.method_caller("get_fitness",position),reverse=True)
           children.
+          hacer que el metodo add 
 
           pass
 
