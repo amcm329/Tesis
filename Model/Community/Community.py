@@ -31,7 +31,7 @@ class Community:
              population = p.Population(self.__population_size,length_subchromosomes,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
              for x in range (self.__population_size):
                  complete_chromosome =  getattr(rc,"create_chromosome")(length_subchromosomes,self.__decimal_precision,self.__vector_ranges)
-                 population.add_individual(complete_chromosome)
+                 population.add_individual(x,complete_chromosome)
            
           except:
               population =  "ERROR. Class: Community. Method: init_population. Message: Problem found with chromosomal representation"
@@ -83,7 +83,8 @@ class Community:
           estos metodos mandarlos llamar desde la poblacion, poniendo el metodo y la posicion como variable.
           parents.get_population().sort(key=o.method_caller("get_fitness",position),reverse=True)
           children.
-          hacer que el metodo add 
+          hacer un metodo dentro de population que sea sort_population()
+          dentro de la poblacion añadir un método shufflear.
 
           pass
 

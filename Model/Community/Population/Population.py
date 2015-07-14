@@ -11,7 +11,6 @@ import Individual as i
 class Population:
       """Método para inicializar los elementos de la Poblacion."""
       def __init__(self,population_size,length_subchromosomes,vector_functions,vector_variables,available_expressions,decimal_precision):
-          self.__population = []
           self.__population_size = population_size
           self.__length_subchromosomes = length_subchromosomes
           self.__vector_functions = vector_functions
@@ -19,7 +18,8 @@ class Population:
           self.__available_expressions = available_expressions        
           self.__decimal_precision = decimal_precision
           
-          #valor que se usa muchas veces, por eso se pone como atributo.  
+          #valor que se usa muchas veces, por eso se pone como atributo.
+          self.__population = [0]*self.__population_size  
           self.__length_vector_functions = len(vector_functions)
           self.__total_fitness = [0]*self.__length_vector_functions
           self.__total_expected_values = [0]*self.__length_vector_functions
@@ -53,8 +53,8 @@ class Population:
           self.__total_expected_values[position] = value      
 
      
-      def add_individual(self,complete_chromosome):
-          self.__population.append(i.Individual(complete_chromosome,self.__length_subchromosomes,self.__vector_functions,self.__available_expressions,self.__decimal_precision))
+      def add_individual(self,position,complete_chromosome):
+          self.__population[position] = i.Individual(complete_chromosome,self.__length_subchromosomes,self.__vector_functions,self.__available_expressions,self.__decimal_precision)
           
       
       def calculate_individuals_properties(self):
@@ -68,17 +68,7 @@ class Population:
                   self.__total_expected_values[x] += individual.get_expected_value(x)     
 
 
-      def fitness_compare(x, y):
-          if x > y:
-             return 1
-          elif x == y:
-             return 0
-      else:  #x < y
-          return -1
-
       
-      def functions_compare(x,y):
-          pass      
 
 
       def print_population(self):
