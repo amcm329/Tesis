@@ -20,4 +20,4 @@ def assign_normal_ranking_fitness(population):
         population.set_total_fitness(z,total_fitness[z])
 
    
-    population.calculate_individuals_properties() 
+    population.calculate_population_properties() 

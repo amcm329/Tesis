@@ -4,8 +4,9 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
+import operator as o
+import random as r
 import Individual as i
-
 
 #Complete population flag will be used in the corresponding methods, not here.
 class Population:
@@ -57,7 +58,7 @@ class Population:
           self.__population[position] = i.Individual(complete_chromosome,self.__length_subchromosomes,self.__vector_functions,self.__available_expressions,self.__decimal_precision)
           
       
-      def calculate_individuals_properties(self):
+      def calculate_population_properties(self):
           for individual in self.__population:
               for x in range (self.__length_vector_functions):
                   #Assigning selection probability
@@ -68,7 +69,13 @@ class Population:
                   self.__total_expected_values[x] += individual.get_expected_value(x)     
 
 
-      
+      #Método que ordena los individuos en orden descendente.
+      def sort_population(self,is_descendent=True,method,position=None):
+          self._population.sort(key=o.methodcaller(method,position),reverse=is_descendent)
+
+
+      def shuffle_population(self):
+          r.shuffle(self.__population)
 
 
       def print_population(self):

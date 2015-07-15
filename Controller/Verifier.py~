@@ -4,10 +4,6 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-#para el elitismo
-#if elitism_amount > parents.get_population_size():
-#             code = "ERROR. Class: Community. Method: elitism. Message: Elitism amount greater than number of individuals in current population" 
-         
 
 def verify_load_xml_features(data):
     verified_data = "ERROR. Class: Parser. Method: load_data_xml. Message: Problem while reading xml"

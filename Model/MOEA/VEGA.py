@@ -5,7 +5,6 @@
 #Author: Castillo Medina Aarón Martín.
 
 import random as r
-import operator as o
 import Community.Community as com
 
 #No tiene completar population porque eso le corresponde al controlador, no a esto.

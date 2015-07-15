@@ -75,26 +75,18 @@ class Community:
           return code
 
 
-      #-----------------------------------------------------------------------------------------------
-
-
       #children[i] = parents[i]                     
-      def elitism(self,parents,children,position,elitism_amount):
-          estos metodos mandarlos llamar desde la poblacion, poniendo el metodo y la posicion como variable.
-          parents.get_population().sort(key=o.method_caller("get_fitness",position),reverse=True)
-          children.
-          hacer un metodo dentro de population que sea sort_population()
-          dentro de la poblacion añadir un método shufflear.
+      def elitism(self,parents,children,is_descendent,function,position,elitism_amount):
+          parents.sort_individuals(is_descendent,function,position)
+          children.sort_individuals(is_descendent,function,position)
+          parents_population = parents.get_population()
+          offset = parents.get_size_population() - elitism_amount
+          for x in range(0,elitism_amount):
+              parent_complete_chromosome = parents_population[i].get_complete_chromosome()
+              children.add_individual(x + offset,complete_chromosome)
 
-          pass
+          
 
-
-      #-----------------------------------------------------------------------------------------------
-
-
-      def disorder_population(self,population):
-          r.shuffle(population.get_population)
-     
 """
 [chromosomes,length_subchromosomes] = create_chromosomes(0,8,3,["10*x+y","x*y","34*x-y"],[[-3,3],[-2,2]])
 #representation,chromosome_set,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra   
