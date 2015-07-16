@@ -41,6 +41,14 @@ class Community:
 
 
 
+      def create_population(self,set_chromosomes):
+          population = p.Population()
+
+          for chromosome in set_chromosomes:
+              population.append()
+
+          return population
+
       #------------------------------------------------
       
       #This evaluates only functions
@@ -74,6 +82,31 @@ class Community:
 
           return code
 
+
+      def evolve_next_generation(self,parents,fitness_position=None):
+          asignar la posición dle fitness a selection_options de 0
+          asignar length subchromosomes      
+          children = p.Population()
+          try:
+             st = __import__(selection_class, globals(), locals(), ['object'], -1)
+             ct = __import__(crossover_class, globals(), locals(), ['object'], -1)
+             mt = __import__(mutation_class, globals(), locals(), ['object'], -1)  
+             selected_parents_chromosomes = getattr(st,selection_method)(parents,selection_options)   
+             for x in range(1,population.get_population_size(),2):
+                 chromosome_a = selected_parents_chromosomes[x - 1]
+                 chromosome_b = selected_parents_chromosomes[x]
+                 [child_1,child_2] = getattr(ct,crossover_method)(chromosome_a,chromosome_b,crossover_options)        
+                 modified_child_1 = getattr(mt,mutation_method)(child_1,mutation_options)
+                 modified_child_2 = getattr(mt,mutation_method)(child_2,mutation_options)
+                 children.add_individual(x - 1,modified_child_1)
+                 children.add_individual(x,modified_child_2)
+        
+              
+          except:
+               children = "ERROR. Class: Community. Method: evolve_next_generation. Message: Problem while making child population""      
+
+
+          return children
 
       #children[i] = parents[i]                     
       def elitism(self,parents,children,is_descendent,function,position,elitism_amount):

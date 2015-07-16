@@ -5,21 +5,49 @@
 #Author: Castillo Medina Aarón Martín.
 
 import random as r
-import operator as o
 import Community.Community as com
 
 #No tiene completar population porque eso le corresponde al controlador, no a esto.
 #Verificar el caso de las poblaciones incompletas.
 #Verificar el caso de las selecciones incompletas. 
 #representation options = gray coding.
+
+
+agregar método create_population
+
+def create_subpopulations(main_population,subpopulations_amount):
+    subpopulations = []
+    how_many_individuals = population_size
+    how_many_objectives = length_vector_functions
+    lower_limit = 0
+    upper_limit = 0
+    for y in range (length_vector_functions):
+          #This guarantees selection in an critera given (poner como objetivo o alguna mierda así)
+          selection_options[0] = y
+
+          individuals_per_objective = int(how_many_individuals/how_many_objectives)
+          upper_limit += individuals_per_objective   
+          provisional_parents = parents_chromosomes[lower_limit:upper_limit]
+          local_parents = com.create_population(representation,provisional_parents,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra)
+          selected_parents_chromosomes += provisional_parents_chromosomes 
+          lower_limit = upper_limit
+          how_many_individuals -= individuals_per_objective
+          how_many_objectives -= 1
+      
+    return subpopulations[]
+
+
+
+
+
 def vega_algorithm(generations,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,representation_class,representation_options,fitness_class,fitness_method,fitness_options,selection_class,selection_method,selection_options,crossover_class,crossover_method,crossover_options,mutation_class,mutation_method,mutation_options,elithism_number):
-    st = __import__(selection_class, globals(), locals(), ['object'], -1)
-    ct = __import__(crossover_class, globals(), locals(), ['object'], -1)
-    mt = __import__(mutation_class, globals(), locals(), ['object'], -1) 
+ 
     length_vector_functions = len(vector_functions)
-    final_information = []     
-    [parents_chromosomes,length_subchromosomes] = com.create_chromosomes(representation,population_size,decimal_precision,vector_functions,vector_ranges)
-    
+    final_information = [0]*length_vector_functions
+    community = com.Community()     
+    parents = community.init_population()
+
+
     for z in range (length_vector_functions):
         final_information.append([])
 
@@ -31,44 +59,22 @@ def vega_algorithm(generations,population_size,vector_functions,vector_variables
         childrens_chromosomes = []
         next_generation_chromosomes = []
         best_individuals_per_generation = []
-        how_many_individuals = population_size
-        how_many_objectives = length_vector_functions
-        lower_limit = 0
-        upper_limit = 0
+        
 
         global_parents = com.create_population(representation,parents_chromosomes,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra)
         
-        for y in range (length_vector_functions):
-            #This garantices selection in an critera given
-            selection_options[0] = y
-
-            individuals_per_objective = int(how_many_individuals/how_many_objectives)
-            upper_limit += individuals_per_objective   
-            provisional_parents = parents_chromosomes[lower_limit:upper_limit]
-            local_parents = com.create_population(representation,provisional_parents,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra)
-            provisional_parents_chromosomes = getattr(st,selection_method)(local_parents,selection_options)
-            selected_parents_chromosomes += provisional_parents_chromosomes 
-            lower_limit = upper_limit
-            how_many_individuals -= individuals_per_objective
-            how_many_objectives -= 1
+       
                 
         while (selected_parents_chromosomes != []):
-              chromosome_a = selected_parents_chromosomes.pop(0)
-              chromosome_b = selected_parents_chromosomes.pop(0)
-              [child_1,child_2] = getattr(ct,crossover_method)(chromosome_a,chromosome_b,crossover_options)        
-              modified_child_1 = getattr(mt,mutation_method)(child_1,mutation_options)
-              modified_child_2 = getattr(mt,mutation_method)(child_2,mutation_options)
-              childrens_chromosomes.append(modified_child_1)
-              childrens_chromosomes.append(modified_child_2)
-        
+              
         children =  com.create_population(representation,childrens_chromosomes,length_subchromosomes,decimal_precision,vector_functions,vector_ranges,fitness_mode,fitness_options_extra) 
           
-        if elithism == True:
-           for x in range (length_vector_functions):
-               best_parent = global_parents.get_best_individual(x)
-               position_worst_child = children.get_position_worst_individual(x)
-               children.set_individual(position_worst_child,best_parent)
         
+               com.elitism(parents,children)
+        
+
+
+
         #as much individuals for generation as number of functions.
         #adding the best elements for generation
         for x in range (length_vector_functions):
