@@ -58,7 +58,7 @@ class Population:
           self.__population[position] = i.Individual(complete_chromosome,self.__length_subchromosomes,self.__vector_functions,self.__available_expressions,self.__decimal_precision)
           
       
-      def calculate_individuals_properties(self):
+      def calculate_population_properties(self):
           for individual in self.__population:
               for x in range (self.__length_vector_functions):
                   #Assigning selection probability

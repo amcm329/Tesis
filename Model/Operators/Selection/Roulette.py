@@ -15,10 +15,9 @@ def shuffle(my_list):
 
 
 """Also called fitness proportionate selection."""
-def roulette(population,options):
-    expected_value_position = options[0]
+def roulette(population,position,options):
     my_chromosome_set = []
-    my_total_expected_value = population.get_total_expected_value(expected_value_position)
+    my_total_expected_value = population.get_total_expected_value(position)
     my_population = population.get_population()
     shuffle(my_population)
 
@@ -29,7 +28,7 @@ def roulette(population,options):
         individual = ""
         while cumulative_sum < random_expected:
               individual = my_population[count]
-              cumulative_sum += individual.get_expected_value(expected_value_position)
+              cumulative_sum += individual.get_expected_value(position)
               count += 1
         
         my_chromosome_set.append(individual.get_complete_chromosome())

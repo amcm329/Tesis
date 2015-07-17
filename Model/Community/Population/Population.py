@@ -11,9 +11,8 @@ import Individual as i
 #Complete population flag will be used in the corresponding methods, not here.
 class Population:
       """Método para inicializar los elementos de la Poblacion."""
-      def __init__(self,population_size,length_subchromosomes,vector_functions,vector_variables,available_expressions,decimal_precision):
+      def __init__(self,population_size,vector_functions,vector_variables,available_expressions,decimal_precision):
           self.__population_size = population_size
-          self.__length_subchromosomes = length_subchromosomes
           self.__vector_functions = vector_functions
           self.__vector_variables = vector_variables 
           self.__available_expressions = available_expressions        
@@ -28,10 +27,6 @@ class Population:
 
       def get_population(self):
           return self.__population
-
-
-      def get_length_subchromosomes(self):
-          return self.__length_subchromosomes
 
 
       def get_length_vector_functions(self):
@@ -55,7 +50,7 @@ class Population:
 
      
       def add_individual(self,position,complete_chromosome):
-          self.__population[position] = i.Individual(complete_chromosome,self.__length_subchromosomes,self.__vector_functions,self.__available_expressions,self.__decimal_precision)
+          self.__population[position] = i.Individual(complete_chromosome,self.__vector_functions,self.__available_expressions,self.__decimal_precision)
           
       
       def calculate_population_properties(self):

@@ -9,7 +9,7 @@ import Population.Population as p
 
 #Cambiar nombre a length subchromosomes
 class Community:
-      def __init__(self,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,representation_class,representation_options,fitness_class,fitness_method,fitness_options)):
+      def __init__(self,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,representation_class,representation_options,fitness_class,fitness_method,fitness_options,selection_class,selection_method,selection_options,crossover_class,crossover_method,crossover_options,mutation_class,mutation_method,mutation_options):
           self.__population_size = population_size
           self.__vector_functions = vector_functions
           self.__vector_variables = vector_variables
@@ -20,17 +20,29 @@ class Community:
           self.__fitness_class = fitness_class
           self.__fitness_method = fitness_method
           self.__fitness_options = fitness_options
+          self.__selection_class = selection_class
+          self.__selection_method = selection_method
+          self.__selection_options = selection_options
+          self.__crossover_class = crossover_class
+          self.__crossover_method = crossover_method
+          self.__crossover_options = crossover_options
+          self.__mutation_class = mutation_class
+          self.__mutation_method = mutation_method
+          self.__mutation_options = mutation_options
           
-          
+          #Agregados para el create population.
+          self.__length_chromosomes = []
+
+
       def init_population(self):
           population = []
           chromosome = []
           try:
              rc = __import__(self.__representation_class, globals(), locals(), ['object'], -1)
-             length_subchromosomes = getattr(rc,"calculate_length_subchromosomes")(self.__decimal_precision,self.__vector_ranges)              
-             population = p.Population(self.__population_size,length_subchromosomes,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
+             self.__length_subchromosomes = getattr(rc,"calculate_length_subchromosomes")(self.__decimal_precision,self.__vector_ranges)              
+             population = p.Population(self.__population_size,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
              for x in range (self.__population_size):
-                 complete_chromosome =  getattr(rc,"create_chromosome")(length_subchromosomes,self.__decimal_precision,self.__vector_ranges)
+                 complete_chromosome =  getattr(rc,"create_chromosome")(self.__length_subchromosomes,self.__decimal_precision,self.__vector_ranges)
                  population.add_individual(x,complete_chromosome)
            
           except:
@@ -40,12 +52,10 @@ class Community:
           return population
 
 
-
       def create_population(self,set_chromosomes):
-          population = p.Population()
-
-          for chromosome in set_chromosomes:
-              population.append()
+          population = p.Population(self.__population_size,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
+          for x in range(len(set_chromosomes)):
+              population.append(x,set_chromosomes[x])
 
           return population
 
@@ -56,13 +66,13 @@ class Community:
           code = "OK"
           complete_chromosome = ""
           decision_variables = {}
-          length_subchromosomes = population.get_length_subchromosomes() 
+        
           try:
               rc = __import__(self.__representation_class, globals(), locals(), ['object'], -1)
-              individuals = population.get_population
+              individuals = population.get_population()
               for individual in individuals:
                   complete_chromosome = individual.get_complete_chromosome()          
-                  decision_variables = getattr(rc,"evaluate_subchromosomes")(complete_chromosome,length_subchromosomes,self.__vector_variables,self.__decimal_precision,self.__representation_options)
+                  decision_variables = getattr(rc,"evaluate_subchromosomes")(complete_chromosome,self.__length_subchromosomes,self.__vector_variables,self.__decimal_precision,self.__representation_options)
                   individual.evaluate_functions(decision_variables)
 
           except:
@@ -75,7 +85,7 @@ class Community:
           code = "OK"
           try: 
              fc = __import__(self.__fitness_class, globals(), locals(), ['object'], -1)
-             getattr(fc,fitness_method)(population,fitness_options)
+             getattr(fc,self.__fitness_method)(population,self.__fitness_options)
                 
           except:
                return "ERROR. Class: Community. Method: assign_population_fitness. Message: Problem while assignating fitness" 
@@ -83,30 +93,29 @@ class Community:
           return code
 
 
-      def evolve_next_generation(self,parents,fitness_position=None):
-          asignar la posición dle fitness a selection_options de 0
-          asignar length subchromosomes      
-          children = p.Population()
+      def evolve_next_generation(self,parents,position):
+          children = p.Population(self.__population_size,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
           try:
-             st = __import__(selection_class, globals(), locals(), ['object'], -1)
-             ct = __import__(crossover_class, globals(), locals(), ['object'], -1)
-             mt = __import__(mutation_class, globals(), locals(), ['object'], -1)  
-             selected_parents_chromosomes = getattr(st,selection_method)(parents,selection_options)   
+             st = __import__(self.__selection_class, globals(), locals(), ['object'], -1)
+             ct = __import__(self.__crossover_class, globals(), locals(), ['object'], -1)
+             mt = __import__(self.__mutation_class, globals(), locals(), ['object'], -1)  
+             selected_parents_chromosomes = getattr(st,self.__selection_method)(parents,position,self.__selection_options)   
              for x in range(1,population.get_population_size(),2):
                  chromosome_a = selected_parents_chromosomes[x - 1]
                  chromosome_b = selected_parents_chromosomes[x]
-                 [child_1,child_2] = getattr(ct,crossover_method)(chromosome_a,chromosome_b,crossover_options)        
-                 modified_child_1 = getattr(mt,mutation_method)(child_1,mutation_options)
-                 modified_child_2 = getattr(mt,mutation_method)(child_2,mutation_options)
+                 [child_1,child_2] = getattr(ct,self.__crossover_method)(chromosome_a,chromosome_b,self.__crossover_options)        
+                 modified_child_1 = getattr(mt,self.__mutation_method)(child_1,self.__mutation_options)
+                 modified_child_2 = getattr(mt,self.__mutation_method)(child_2,self.__mutation_options)
                  children.add_individual(x - 1,modified_child_1)
                  children.add_individual(x,modified_child_2)
         
               
           except:
-               children = "ERROR. Class: Community. Method: evolve_next_generation. Message: Problem while assignating fitness""      
+               children = "ERROR. Class: Community. Method: evolve_next_generation. Message: Problem while making child population""      
 
 
           return children
+
 
       #children[i] = parents[i]                     
       def elitism(self,parents,children,is_descendent,function,position,elitism_amount):

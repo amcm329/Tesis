@@ -15,11 +15,10 @@ def shuffle(my_list):
 
 
 #offspring debe ser entero menor 
-def stochastic_universal_sampling(population,options):
-    fitness_position = options[0]
-    offspring = additional_options[1]
+def stochastic_universal_sampling(population,position,options):
+    offspring = additional_options[0]
     my_chromosome_set = []
-    my_total_fitness = population.get_total_fitness(fitness_position)
+    my_total_fitness = population.get_total_fitness(position)
     my_population = population.get_population()
     shuffle(my_population)
 
@@ -34,7 +33,7 @@ def stochastic_universal_sampling(population,options):
         individual = ""
         while cumulative_sum < point:
               individual = my_population[count]
-              cumulative_sum += individual.get_fitness(fitness_position)
+              cumulative_sum += individual.get_fitness(position)
               count += 1
         
         my_chromosome_set.append(individual.get_complete_chromosome())

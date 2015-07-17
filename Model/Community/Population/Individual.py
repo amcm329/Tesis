@@ -9,9 +9,8 @@ import Math
 
 #Decimal precision used as a parameter because python doesnt want to truncate precision by itself.     
 class Individual:
-      def __init__(self,complete_chromosome,length_subchromosomes,vector_functions,available_expressions,decimal_precision):
+      def __init__(self,complete_chromosome,vector_functions,available_expressions,decimal_precision):
           self.__complete_chromosome = complete_chromosome
-          self.__length_subchromosomes = length_subchromosomes
           self.__vector_functions = vector_functions
           self.__available_expressions = available_expressions
           self.__precision_string = "{0:." + str(decimal_precision) + "f}"

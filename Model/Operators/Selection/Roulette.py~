@@ -15,7 +15,7 @@ def shuffle(my_list):
 
 
 """Also called fitness proportionate selection."""
-def roulette(population,options):
+def roulette(population,position,options):
     expected_value_position = options[0]
     my_chromosome_set = []
     my_total_expected_value = population.get_total_expected_value(expected_value_position)
