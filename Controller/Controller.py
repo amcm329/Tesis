@@ -38,6 +38,14 @@ def delete_features(features_filename,category_location,technique_name,technique
 
     return verifier_code
 
+
+def create_algorithm_instance(algorithm_class):
+    pass
+def create_representation_instance(representation_class):
+    
+def create_fitness_instance():
+
+
 #Agregar un código de error
 #Este metodo tiene que pasar primero por el parser.
 #poner excepciones al código

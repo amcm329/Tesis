@@ -6,7 +6,7 @@
 
 import Population.Population as p
 
-
+asignar fitness implica de una vez evaluar en funciones objetivo.
 #Cambiarle nombre a length subchromosomes
 class Community:
       def __init__(self,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,representation_class,representation_options,fitness_class,fitness_method,fitness_options,selection_class,selection_method,selection_options,crossover_class,crossover_method,crossover_options,mutation_class,mutation_method,mutation_options):

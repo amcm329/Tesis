@@ -11,6 +11,9 @@ import Community.Community as com
 #Verificar el caso de las selecciones incompletas. 
 #representation options = gray coding.
 
+desde el tester probar existencia de la clase y el método y de hecho desde el tester sólo pedir la instancia, no el método.
+selection_instance 
+
 
 #Creating as much populations as number of vector_functions
 def create_subpopulations(main_population):
@@ -40,37 +43,33 @@ def merge_subpopulations(subpopulations):
  
     return com.create_population(chromosomes)
 
-init population
-evaluate functions
-fitness
-next generation
-
-
 
 def vega_algorithm(generations,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,representation_class,representation_options,fitness_class,fitness_method,fitness_options,selection_class,selection_method,selection_options,crossover_class,crossover_method,crossover_options,mutation_class,mutation_method,mutation_options,elithism_number): 
-   
     final_information = [0]*length_vector_functions
     community = com.Community(population_size,vector_functions,vector_variables,available_expressions,decimal_precision,representation_class,representation_options,fitness_class,fitness_method,fitness_options,selection_class,selection_method,selection_options,crossover_class,crossover_method,crossover_options,mutation_class,mutation_method,mutation_options)           
+
     parents = community.init_population()
 
-    for x in range (generations):
-        community.evaluate_population_functions(parents)
-        community.assign_population_fitness(parents)
-        parents.shuflle_population()
-        subpopulations = create_subpopulations(parents)
-        children_population = []
+       for x in range (generations):
+           result_evaluation = community.evaluate_population_functions(parents)
+           result_fitness = community.assign_population_fitness(parents)
+           parents.shuflle_population()
+           subpopulations = create_subpopulations(parents)
+           children_population = []
 
-        for y in range (len(subpopulations)):
-            subpopulation = subpopulations[i]
-            subpopulation.shuffle_population()
-            children = evolve_next_generation(subpopulation,y)
-            com.evaluate_population_functions(children)
-            com.assign_population_fitness(parents)
-            com.elitism(subpopulation,children,True,"get_fitness",y,elitism_amount)
-            children_population.append(children)
+           for y in range (len(subpopulations)):
+               subpopulation = subpopulations[i]
+               subpopulation.shuffle_population()
+               children = evolve_next_generation(subpopulation,y)
+               com.evaluate_population_functions(children)
+               com.assign_population_fitness(parents)
+               com.elitism(subpopulation,children,True,"get_fitness",y,elitism_amount)
+               children_population.append(children)
 
-         #aqui falta cosechar la info
-         parents =  merge_subpopulations(parents)
+           #aqui falta cosechar la info
+           parents =  merge_subpopulations(parents)
+
+
 
          
 
