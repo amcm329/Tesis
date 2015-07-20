@@ -4,6 +4,8 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
+import math
+import random
 
 """Método que calcula la longitud de todos los subcromosomas. Para ello
 se hace uso del vector de rangos, así como de la precisión decimal."""
@@ -17,6 +19,7 @@ def calculate_length_subchromosomes(vector_variables,decimal_precision,represent
     length_subchromosomes = []
     #contador = 0
     for single_variable in vector_variables:
+        print "Single: " + str(single_variable)
         variable_range = single_variable[1]
         #print "Hola",contador," ",my_range
         #contador+=1
@@ -26,9 +29,9 @@ def calculate_length_subchromosomes(vector_variables,decimal_precision,represent
         #print "Upper: ",upper_limit 
         amount = (upper_limit - lower_limit)*true_decimal_precision
         #print "Amount: ",amount
-        how_many_bits_around = m.log(amount,2) 
+        how_many_bits_around = math.log(amount,2) 
         #print "Mas o menos: ",how_many_bits_around
-        how_many_bits_real = int(m.ceil(how_many_bits_around))
+        how_many_bits_real = int(math.ceil(how_many_bits_around))
         #print "Real: ",how_many_bits_real
         length_subchromosomes.append(how_many_bits_real)
         #print "----------------------------------------------"
@@ -43,7 +46,7 @@ def create_chromosome(length_subchromosomes,vector_variables,decimal_precision,r
     for length_subchromosome in length_subchromosomes:
         chromosome = [] 
         for x in range(0,length_subchromosome):
-            number = r.randint(0,1)
+            number = random.randint(0,1)
             chromosome.append(number)
 
         final_chromosome += chromosome
@@ -51,7 +54,7 @@ def create_chromosome(length_subchromosomes,vector_variables,decimal_precision,r
     return final_chromosome
 
 
-def binary_to_decimal(self,chromosome):
+def binary_to_decimal(chromosome):
     m = len(chromosome) - 1
     number = 0
     for i in range (m,-1,-1):
@@ -90,7 +93,7 @@ def evaluate_subchromosomes(complete_chromosome,length_subchromosomes,vector_var
         number = a + (decimal_number*((b-a)/((2.0**m) - 1)))
         #print "El number del agente ", self.__individual_id, " es: ",number             
               
-        decision_variables[variable_name] = float(self.__precision_string.format(number)))
+        decision_variables[variable_name] = float(precision_string.format(number))
         lower_limit = upper_limit
 
     return decision_variables

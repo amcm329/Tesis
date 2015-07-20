@@ -4,25 +4,19 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-import random as r
-
-def shuffle(my_list):
-    for i in range (len(my_list)-1,1,-1):
-        j = r.randint(0,1)
-        provisional = my_list[j]
-        my_list[j] = my_list[i]
-        my_list[i] = provisional
-
+import random
 
 """Also called fitness proportionate selection."""
-def roulette(population,position,options):
-    my_chromosome_set = []
-    my_total_expected_value = population.get_total_expected_value(position)
+def roulette(population,position,selection_options):
+    chromosome_set = []
+    total_expected_value = population.get_total_expected_value(position)
+    #print "My_total_expected value: ",total_expected_value
     my_population = population.get_population()
-    shuffle(my_population)
+    #print "Population: ", my_population    
 
     for x in range (population.get_population_size()):
-        random_expected = r.uniform(0,my_total_expected_value)
+        random_expected = random.uniform(0,total_expected_value)
+     #   print "Random: ", random_expected
         cumulative_sum = 0.0
         count = 0
         individual = ""
@@ -31,6 +25,7 @@ def roulette(population,position,options):
               cumulative_sum += individual.get_expected_value(position)
               count += 1
         
-        my_chromosome_set.append(individual.get_complete_chromosome())
+      #  print "Individual: " + str(individual)
+        chromosome_set.append(individual.get_complete_chromosome())
 
-    return my_chromosome_set
+    return chromosome_set

@@ -48,6 +48,27 @@ print "Resultado: ",a
 
 
 
+z = ["a",3,2,"aa","a","ab",34,-1,"ba"]
+
+print "Z: ", z
+
+k =  range(len(z))
+
+for x in z:
+    perro = x
+    if type(perro) == str:
+       #print "Entro: " + str(perro) + " Position: " + str(x)
+       if "a" in perro:
+           print "Encontre: ", perro
+           z.remove(perro)
+       
+       print "El z: ", z       
+
+print "Z: ", z
+ 
+
+
+
 
 
 

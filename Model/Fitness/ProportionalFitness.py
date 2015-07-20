@@ -4,7 +4,7 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-def assign_proportional_fitness(population):
+def assign_proportional_fitness(population,fitness_options):
     total_fitness = [0] * population.get_length_vector_functions()
     for individual in population.get_population():
         for x in range (population.get_length_vector_functions()):

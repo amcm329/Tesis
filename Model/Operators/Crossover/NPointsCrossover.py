@@ -4,13 +4,12 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-import random as r
+import random
 
 """Método donde se implementa la cruza en n puntos. 
 Algo importante a considerar es que si el tamaño del cromosoma de un Individuo 
 es de "n", entonces el número máximo de puntos de cruza es "n-1"."""    
-def n_points_crossover(chromosome_a,chromosome_b,options):
-         
+def n_points_crossover(chromosome_a,chromosome_b,options):     
     """Este método presenta básicamente 2 etapas, en la primera se utilizan
     valores aleatorios que simularán ser los puntos de , dependiendo
     del número de puntos de cruce (dado por el parámetro "puntos") serán los
@@ -42,7 +41,7 @@ def n_points_crossover(chromosome_a,chromosome_b,options):
     chromosome_son_1 = ""
     chromosome_son_2 = ""
            
-    crossover_number = r.random()
+    crossover_number = random.random()
           
     if crossover_number <= crossover_probability:
              my_chromosome_a = chromosome_a
@@ -65,14 +64,13 @@ def n_points_crossover(chromosome_a,chromosome_b,options):
                 how_many_points_auxiliar = how_many_points
           
                 while how_many_points_auxiliar != 0:
-                      number = 1 + r.randint(0,length_chromosome - 2)
+                      number = 1 + random.randint(0,length_chromosome - 2)
                 
                       if not(number in sections_list):
                          sections_list.append(number) 
                          how_many_points_auxiliar -= 1            
                    
                 real_sections_list = sorted(sections_list)
-          
           
              for x in range(1,len(real_sections_list)):
                  #print "Limite_inferior: " + str(real_sections_list[x-1])

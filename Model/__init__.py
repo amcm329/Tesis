@@ -4,6 +4,7 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
+import ChromosomalRepresentation
 import Community
 import Debug
 import Fitness

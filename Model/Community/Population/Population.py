@@ -29,6 +29,10 @@ class Population:
           return self.__population
 
 
+      def get_population_size(self):
+          return self.__population_size
+
+
       def get_length_vector_functions(self):
           return self.__length_vector_functions
 
@@ -65,11 +69,11 @@ class Population:
 
 
       #Método que ordena los individuos en orden descendente.
-      def sort_population(self,is_descendent=True,method,position=None):
-          self._population.sort(key=o.methodcaller(method,position),reverse=is_descendent)
+      def sort_individuals(self,method,position,is_descendent=True):
+          self.__population.sort(key=o.methodcaller(method,position),reverse=is_descendent)
 
 
-      def shuffle_population(self):
+      def shuffle_individuals(self):
           r.shuffle(self.__population)
 
 

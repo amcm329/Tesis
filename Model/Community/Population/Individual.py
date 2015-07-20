@@ -4,7 +4,7 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-import Math
+import math
 
 
 #Decimal precision used as a parameter because python doesnt want to truncate precision by itself.     
@@ -24,6 +24,9 @@ class Individual:
 
       def get_complete_chromosome(self):
           return self.__complete_chromosome
+
+      def get_decision_variables(self):
+          return self.__decision_variables
            
 
       def get_evaluated_function(self,position):
@@ -39,11 +42,11 @@ class Individual:
 
 
       def get_selection_probability(self,position):
-          return self.__selection_probability[position]
+          return self.__selection_probabilities[position]
 
       
       def set_selection_probability(self,position,value):
-          self.__selection_probability[position] = value
+          self.__selection_probabilities[position] = value
       
      
       """Número de copias"""    
@@ -56,15 +59,20 @@ class Individual:
    
 
       # Expressions = variables + constants + user built-in functions
-      def __evaluate_single_function(self,function,expressions):      
+      def __evaluate_single_function(self,function,expressions): 
           evaluation = eval(function,expressions)
           return float(self.__precision_string.format(evaluation))
 
 
       def evaluate_functions(self,decision_variables):
           self.__decision_variables = decision_variables
-          all_expressions = decision_variables.update(self.__available_expressions)
-          for function in vector_functions:
+          #print "Decision variables: ", self.__decision_variables
+          all_expressions = {}
+          all_expressions.update(self.__decision_variables)
+          all_expressions.update(self.__available_expressions)
+          #print "All expressions: ", all_expressions
+          #print "Available expressions: ",self.__available_expressions
+          for function in self.__vector_functions:
               result = self.__evaluate_single_function(function,all_expressions)
               self.__evaluated_functions.append(result)
                             
