@@ -58,8 +58,8 @@ class Community:
           complete_chromosome = ""
           decision_variables = {}
           individuals = population.get_population()
-          print "Len individuals: ",len(individuals)
-          print "Individuals: ", individuals
+          #print "Len individuals: ",len(individuals)
+          #print "Individuals: ", individuals
           for individual in individuals:
               complete_chromosome = individual.get_complete_chromosome()          
               decision_variables = getattr(self.__representation_instance,"evaluate_subchromosomes")(complete_chromosome,self.__length_subchromosomes,self.__vector_variables,self.__decimal_precision,self.__representation_options)
@@ -74,9 +74,10 @@ class Community:
       def evolve_next_generation(self,parents,position):
           size = parents.get_population_size()
           children = poblacion.Population(size,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
-          selected_parents_chromosomes = getattr(self.__selection_instance,self.__selection_method)(parents,position,self.__selection_options)   
+          selected_parents_chromosomes = getattr(self.__selection_instance,self.__selection_method)(parents,position,self.__selection_options)
+          print "Len: ", len(selected_parents_chromosomes)   
           for x in range(1,size,2):
-              print "Perro: ", x
+              #print "Perro: ", x
               chromosome_a = selected_parents_chromosomes[x - 1]
               chromosome_b = selected_parents_chromosomes[x]
               [child_1,child_2] = getattr(self.__crossover_instance,self.__crossover_method)(chromosome_a,chromosome_b,self.__crossover_options)

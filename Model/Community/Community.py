@@ -75,6 +75,14 @@ class Community:
           size = parents.get_population_size()
           children = poblacion.Population(size,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
           selected_parents_chromosomes = getattr(self.__selection_instance,self.__selection_method)(parents,position,self.__selection_options)
+
+
+          cambiar los imports por palabras en español para hacer la diferencia.
+          #Si se tiene una población impar simplemente se añade un elemento al azar de los seleccionados automáticamente a la siguiente generación
+          if size % 2 != 0:
+             index = 
+
+
           print "Len: ", len(selected_parents_chromosomes)   
           for x in range(1,size,2):
               #print "Perro: ", x
