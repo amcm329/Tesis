@@ -4,8 +4,10 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
+import random as aleatorio
 import Population.Population as poblacion
 
+#cambiar los imports por palabras en español para hacer la diferencia.          
 #asignar fitness implica de una vez evaluar en funciones objetivo.
 #Cambiarle nombre a length subchromosomes
 class Community:
@@ -58,8 +60,6 @@ class Community:
           complete_chromosome = ""
           decision_variables = {}
           individuals = population.get_population()
-          #print "Len individuals: ",len(individuals)
-          #print "Individuals: ", individuals
           for individual in individuals:
               complete_chromosome = individual.get_complete_chromosome()          
               decision_variables = getattr(self.__representation_instance,"evaluate_subchromosomes")(complete_chromosome,self.__length_subchromosomes,self.__vector_variables,self.__decimal_precision,self.__representation_options)
@@ -75,17 +75,18 @@ class Community:
           size = parents.get_population_size()
           children = poblacion.Population(size,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
           selected_parents_chromosomes = getattr(self.__selection_instance,self.__selection_method)(parents,position,self.__selection_options)
-
-
-          cambiar los imports por palabras en español para hacer la diferencia.
+      
           #Si se tiene una población impar simplemente se añade un elemento al azar de los seleccionados automáticamente a la siguiente generación
           if size % 2 != 0:
-             index = 
+             size -= 1  
+             index = aleatorio.randint(0,size)
+             lucky_chromosome = selected_parents_chromosomes[index]
+             selected_parents_chromosomes.remove(selected_parents_chromosomes[index])
+             modified_lucky_chromosome = getattr(self.__mutation_instance,self.__mutation_method)(lucky_chromosome,self.__mutation_options)
+             children.add_individual(size,modified_lucky_chromosome)
 
-
-          print "Len: ", len(selected_parents_chromosomes)   
+          count = 0
           for x in range(1,size,2):
-              #print "Perro: ", x
               chromosome_a = selected_parents_chromosomes[x - 1]
               chromosome_b = selected_parents_chromosomes[x]
               [child_1,child_2] = getattr(self.__crossover_instance,self.__crossover_method)(chromosome_a,chromosome_b,self.__crossover_options)
@@ -93,7 +94,7 @@ class Community:
               modified_child_2 = getattr(self.__mutation_instance,self.__mutation_method)(child_2,self.__mutation_options)
               children.add_individual(x - 1,modified_child_1)
               children.add_individual(x,modified_child_2)
-
+              count +=2
           return children
 
 
