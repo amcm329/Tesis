@@ -4,7 +4,7 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-import random
+import random as aleatorio
 
 """Also called fitness proportionate selection."""
 def roulette(population,position,selection_options):
@@ -15,7 +15,7 @@ def roulette(population,position,selection_options):
     #print "Population: ", my_population    
 
     for x in range (population.get_population_size()):
-        random_expected = random.uniform(0,total_expected_value)
+        random_expected = aleatorio.uniform(0,total_expected_value)
      #   print "Random: ", random_expected
         cumulative_sum = 0.0
         count = 0
