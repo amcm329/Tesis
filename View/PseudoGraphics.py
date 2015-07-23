@@ -15,9 +15,9 @@ def start_sequence():
     features = "Features.xml"
     settings = "Settings.xml"
 
-    generations = 1000
-    population_size = 500
-    vector_functions = ["12*(x-y)","pi**y","11*(x+y)","12+y"]
+    generations = 3
+    population_size = 18
+    vector_functions = ["12*(x-y)","pi**y","11*(x+y)"]
     vector_variables = [["x",[-5,7]],["y",[3,6]],["z",[-8,-2]]]
     available_expressions = {"pi":math.pi,"cos":math.cos}#,"hola":math.tan}
     decimal_precision = 4
@@ -29,9 +29,11 @@ def start_sequence():
     representation_options  = [False] 
     fitness_class = "Model.Fitness.ProportionalFitness"
     fitness_method = "assign_proportional_fitness"
-    fitness_options = []
-    selection_class = "Model.Operators.Selection.Roulette"
-    selection_method = "roulette"
+    fitness_options = [] revisar por qué no dan los individuos que deben
+    #selection_class = "Model.Operators.Selection.Roulette" 
+    #selection_method = "roulette"
+    selection_class = "Model.Operators.Selection.StochasticUniversalSampling"
+    selection_method = "stochastic_universal_sampling"
     selection_options = []
     crossover_class = "Model.Operators.Crossover.NPointsCrossover"
     crossover_method = "n_points_crossover"
