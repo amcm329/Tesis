@@ -33,10 +33,9 @@ def n_points_crossover(chromosome_a,chromosome_b,crossover_options):
     si el valor de la probabilidad es acertado, en otro caso no se hace
     nada y se regresan a los mismos cromosomas padres."""
           
-    crossover_probability = crossover_options[0]    
-    how_many_points = crossovet_options[1]
-    
-
+    how_many_points = crossovet_options[0]
+    crossover_probability = crossover_options[1]    
+ 
     """Se inicializan los cromosomas hijos, los cuales contendrán la información
     de la cruza entre los padres."""
     chromosome_son_1 = ""
