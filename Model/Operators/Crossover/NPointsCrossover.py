@@ -34,7 +34,7 @@ def n_points_crossover(chromosome_a,chromosome_b,crossover_options):
     nada y se regresan a los mismos cromosomas padres."""
           
     crossover_probability = crossover_options[0]    
-    how_many_points = crossovet_options[1]
+    how_many_points = crossover_options[1]
     
 
     """Se inicializan los cromosomas hijos, los cuales contendrán la información

@@ -20,7 +20,7 @@ def stochastic_universal_sampling(population,position,options):
           individual = individuals[population_count % population_size]
           cumulative_sum += individual.get_expected_value(position)
           while cumulative_sum > ptr and population_selected < population_size:
-               chromosome_set.append(individual.get_complete_chromosome())
+                chromosome_set.append(individual.get_complete_chromosome())
                 population_selected += 1
                 ptr += 1  
           

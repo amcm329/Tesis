@@ -19,6 +19,7 @@ def calculate_length_subchromosomes(vector_variables,decimal_precision,represent
     length_subchromosomes = []
     #contador = 0
     for single_variable in vector_variables:
+        print "Single: " + str(single_variable)
         variable_range = single_variable[1]
         #print "Hola",contador," ",my_range
         #contador+=1

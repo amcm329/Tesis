@@ -17,10 +17,12 @@
    <Crossover location="Model.Operators.Crossover.">
       <Technique name="N-Points Crossover" class="NPointsCrossover" method="n_points_crossover" />
       <Technique name="Uniform Crossover" class="UniformCrossover" method="uniform_crossover" />
-      <Technique name="Real Crossover" class="RealCrossover" method="real_crossover" />
+      <Technique name="Float Point Crossover" class="FloatPointCrossover" method="float_point_crossover" />
    </Crossover>
    <Mutation location="Model.Operators.Mutation.">
-      <Technique name="Mutation" class="Mutation" method="mutation" />
+      <Technique name="Binary Mutation" class="BinaryMutation" method="binary_mutation" />
+      <Technique name="Float Point Mutation" class="FloatPointMutation" method="float_point_mutation" />
+
    </Mutation>
    <MOEA location="Model.MOEA.">
       <Technique name="V.E.G.A. (Vector Evaluated Genetic Algorithm)" class="VEGA" method="vega_algorithm" />

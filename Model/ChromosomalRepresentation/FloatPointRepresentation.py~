@@ -20,6 +20,7 @@ def create_chromosome(length_subchromosomes,vector_variables,decimal_precision,r
         number = aleatorio.uniform(lower_limit,upper_limit)
         chromosome.append(float(precision_string.format(number)))
 
+    print "---Chromosome: ",chromosome
     return chromosome
 
 def evaluate_subchromosomes(complete_chromosome,length_subchromosomes,vector_variables,decimal_precision,representation_options): 

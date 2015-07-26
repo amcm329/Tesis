@@ -23,3 +23,8 @@ def binary_mutation(chromosome,mutation_options):
             mutated_chromosome += [gen]       
              
     return mutated_chromosome
+
+
+#f = [1,0,0,1,0,0]
+#print f
+#print mutation(f,0.10)
