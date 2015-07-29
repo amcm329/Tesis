@@ -56,7 +56,7 @@ class Community:
 
     
       #This evaluates only functions
-      def __evaluate_population_functions(self,population):
+      def evaluate_population_functions(self,population):
           complete_chromosome = ""
           decision_variables = {}
           individuals = population.get_individuals()
@@ -67,7 +67,6 @@ class Community:
 
 
       def assign_population_fitness(self,population):
-          self.__evaluate_population_functions(population)
           getattr(self.__fitness_instance,self.__fitness_method)(population,self.__fitness_options)
         
   
@@ -76,7 +75,7 @@ class Community:
       
 
       def execute_crossover_and_mutation(self,selected_parents_chromosomes):
-          size = len(selected__chromosomes)          
+          size = len(selected_parents_chromosomes)          
           children = poblacion.Population(size,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
 
           #Si se tiene una población impar simplemente se añade un elemento al azar de los seleccionados automáticamente a la siguiente generación

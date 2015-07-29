@@ -56,7 +56,7 @@ class Community:
 
     
       #This evaluates only functions
-      def __evaluate_population_functions(self,population):
+      def evaluate_population_functions(self,population):
           complete_chromosome = ""
           decision_variables = {}
           individuals = population.get_individuals()
@@ -67,7 +67,6 @@ class Community:
 
 
       def assign_population_fitness(self,population):
-          self.__evaluate_population_functions(population)
           getattr(self.__fitness_instance,self.__fitness_method)(population,self.__fitness_options)
         
   

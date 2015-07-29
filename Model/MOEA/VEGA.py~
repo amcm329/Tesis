@@ -58,14 +58,13 @@ def vega_algorithm(generations,population_size,vector_functions,vector_variables
            #Shuffliing subpopulations
            for y in range (len(parents_subpopulations)):
                current_subpopulation = parents_subpopulations[y]
+               comunidad.evaluate_population_functions(population)
                comunidad.assign_population_fitness(current_subpopulation)
                final_information[y].append(comunidad.get_best_individual(current_subpopulation,y))
                selected_parents_chromosomes = comunidad.execute_selection(current_subpopulation,y)
                for parent_chromosome in selected_parents_chromosomes: 
                    children_chromosomes.append(parent_chromosome)
                
-
-           print "Perro: ", children_chromosomes
            children = comunidad.execute_crossover_and_mutation(children_chromosomes)
            parents = children
 
