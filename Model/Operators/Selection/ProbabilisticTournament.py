@@ -10,8 +10,8 @@ def probabilistic_tournament(population,position,selection_options):
     population_count = 0
     chromosome_set = []
     contenders_amount = selection_options[0]
-    population_size = population.get_population_size()
-    individuals = population.get_population()
+    population_size = population.get_size()
+    individuals = population.get_individuals()
 
     while population_count < population_size:
           tournament = []

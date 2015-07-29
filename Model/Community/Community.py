@@ -59,7 +59,7 @@ class Community:
       def __evaluate_population_functions(self,population):
           complete_chromosome = ""
           decision_variables = {}
-          individuals = population.get_population()
+          individuals = population.get_individuals()
           for individual in individuals:
               complete_chromosome = individual.get_complete_chromosome()          
               decision_variables = getattr(self.__representation_instance,"evaluate_subchromosomes")(complete_chromosome,self.__length_subchromosomes,self.__vector_variables,self.__decimal_precision,self.__representation_options)
@@ -69,13 +69,16 @@ class Community:
       def assign_population_fitness(self,population):
           self.__evaluate_population_functions(population)
           getattr(self.__fitness_instance,self.__fitness_method)(population,self.__fitness_options)
-          
-
-      def evolve_next_generation(self,parents,position):
-          size = parents.get_population_size()
-          children = poblacion.Population(size,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
-          selected_parents_chromosomes = getattr(self.__selection_instance,self.__selection_method)(parents,position,self.__selection_options)
+        
+  
+      def execute_selection(self,parents,position):
+          return getattr(self.__selection_instance,self.__selection_method)(parents,position,self.__selection_options)
       
+
+      def execute_crossover_and_mutation(self,selected_parents_chromosomes):
+          size = len(selected_parents_chromosomes)          
+          children = poblacion.Population(size,self.__vector_functions,self.__vector_variables,self.__available_expressions,self.__decimal_precision)
+
           #Si se tiene una población impar simplemente se añade un elemento al azar de los seleccionados automáticamente a la siguiente generación
           if size % 2 != 0:
              size -= 1  
@@ -84,7 +87,7 @@ class Community:
              selected_parents_chromosomes.remove(selected_parents_chromosomes[index])
              modified_lucky_chromosome = getattr(self.__mutation_instance,self.__mutation_method)(lucky_chromosome,self.__mutation_options)
              children.add_individual(size,modified_lucky_chromosome)
-
+          
           count = 0
           for x in range(1,size,2):
               chromosome_a = selected_parents_chromosomes[x - 1]
@@ -95,21 +98,22 @@ class Community:
               children.add_individual(x - 1,modified_child_1)
               children.add_individual(x,modified_child_2)
               count +=2
-          return children
 
+          return children
+      
 
       def elitism(self,parents,children,function,position,is_descendent,elitism_amount):
           parents.sort_individuals(function,position,is_descendent)
           children.sort_individuals(function,position,is_descendent)
-          parents_population = parents.get_population()
-          offset = parents.get_population_size() - elitism_amount
+          parents_population = parents.get_individuals()
+          offset = parents.get_size() - elitism_amount
           for x in range(0,elitism_amount):
               parent_complete_chromosome = parents_population[x].get_complete_chromosome()
               children.add_individual(x + offset,parent_complete_chromosome)
 
 
       def get_best_individual(self,population,position):
-          individuals = population.get_population()
+          individuals = population.get_individuals()
           best_individual = individuals[0].get_decision_variables()
 
           return best_individual 

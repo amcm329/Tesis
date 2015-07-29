@@ -11,10 +11,10 @@ def roulette(population,position,selection_options):
     chromosome_set = []
     total_expected_value = population.get_total_expected_value(position)
     #print "My_total_expected value: ",total_expected_value
-    my_population = population.get_individuals()
+    my_population = population.get_population()
     #print "Population: ", my_population    
 
-    for x in range (population.get_size()):
+    for x in range (population.get_population_size()):
         random_expected = aleatorio.uniform(0,total_expected_value)
      #   print "Random: ", random_expected
         cumulative_sum = 0.0

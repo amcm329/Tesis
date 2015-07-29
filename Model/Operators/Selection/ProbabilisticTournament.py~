@@ -13,7 +13,6 @@ def probabilistic_tournament(population,position,selection_options):
     population_size = population.get_population_size()
     individuals = population.get_population()
 
-    print "Size: ", population_size
     while population_count < population_size:
           tournament = []
           count = 0
@@ -22,16 +21,14 @@ def probabilistic_tournament(population,position,selection_options):
               tournament.append(individuals[index])
 
           best = tournament[0]
-          #tournament.remove(0)
-          print "Tournament: ", len(tournament)
           for contender in tournament:
               flip = aleatorio.random()
               if flip <= 0.5: 
                  best = contender
                  count+=1
           
-          print "         El elegido: ", count
           chromosome_set.append(best.get_complete_chromosome())
           population_count+=1
+
     return chromosome_set
 

@@ -12,13 +12,11 @@ def float_point_mutation(chromosome,mutation_options):
     vector_variables = mutation_options[2]
     precision_string = "{0:." + str(decimal_precision) + "f}"
     mutated_chromosome = []
-    print "Antes: ",chromosome      
     for x in range(len(chromosome)):
         gen = chromosome[x]
         number = aleatorio.random()
              
         if number <= mutation_probability:
-           print "Entro"
            current_variable =  vector_variables[x]
            variable_range = current_variable[1]
            lower_value = variable_range[0] 
@@ -29,6 +27,5 @@ def float_point_mutation(chromosome,mutation_options):
         else:
             mutated_chromosome += [gen]       
           
-    print "Despues: ", mutated_chromosome
     return mutated_chromosome
     

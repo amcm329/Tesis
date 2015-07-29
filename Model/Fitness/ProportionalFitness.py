@@ -6,7 +6,7 @@
 
 def assign_proportional_fitness(population,fitness_options):
     total_fitness = [0] * population.get_length_vector_functions()
-    for individual in population.get_population():
+    for individual in population.get_individuals():
         for x in range (population.get_length_vector_functions()):
             #Asigning total fitness
             individual.set_fitness(x,individual.get_evaluated_function(x))

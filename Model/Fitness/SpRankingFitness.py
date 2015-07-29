@@ -10,8 +10,8 @@ def assign_sp_ranking_fitness(population,fitness_options):
     for x in range (population.get_length_vector_functions()):
           population.get_population().sort(key=lambda individual: individual.evaluated_functions[x])
           y = 0
-          for individual in population.get_population():
-                individual.set_fitness(x,2.0 - sp + 2.0 * (sp - 1.0) * (y/(population.get_population_size() - 1.0)))
+          for individual in population.get_individuals():
+                individual.set_fitness(x,2.0 - sp + 2.0 * (sp - 1.0) * (y/(population.get_size() - 1.0)))
                 total_fitness[x] += individual.get_fitness(x)
                 y += 1
   

@@ -25,11 +25,11 @@ class Population:
           self.__total_expected_values = [0]*self.__length_vector_functions
 
 
-      def get_individuals(self):
+      def get_population(self):
           return self.__population
 
 
-      def get_size(self):
+      def get_population_size(self):
           return self.__population_size
 
 

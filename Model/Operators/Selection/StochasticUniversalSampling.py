@@ -12,8 +12,8 @@ def stochastic_universal_sampling(population,position,options):
     cumulative_sum = 0
     population_selected = 0
     population_count = 0
-    population_size = population.get_population_size() 
-    individuals = population.get_population()
+    population_size = population.get_size() 
+    individuals = population.get_individuals()
     ptr = aleatorio.random()
     
     while population_selected < population_size:
