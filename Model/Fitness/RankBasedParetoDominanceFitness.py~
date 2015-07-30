@@ -5,8 +5,8 @@
 #Author: Castillo Medina Aarón Martín.
 
 def assign_pareto_dominance_based_fitness(population,fitness_options):
-    individuals = population.get_population()
-    size = population.get_size_population()
+    individuals = population.get_individuals()
+    size = population.get_size()
     length = population.get_length_vector_functions()
     total_fitness = 0 
     for x in range (size):

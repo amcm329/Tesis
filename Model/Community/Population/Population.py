@@ -76,6 +76,9 @@ class Population:
       def shuffle_individuals(self):
           r.shuffle(self.__population)
 
+      def calculate_shared_fitness():
+          for x in  range (self.__population_size):
+              
 
       def print_population(self):
           print "Total fitness: " + str(self.__total_fitness)
