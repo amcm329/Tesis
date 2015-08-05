@@ -66,6 +66,42 @@ class Community:
               individual.evaluate_functions(decision_variables)
 
 
+      def calculate_population_pareto_dominance(self,population):
+          individuals = population.get_individuals()
+          size = population.get_size()
+          length = population.get_length_vector_functions()
+          total_fitness = 0 
+          for x in range (size):
+              current = individuals[x]
+              how_many_individuals_dominate_current = 0
+              for y in range (size):
+                  if x != y:
+                     challenger = individuals[y]
+                     for z in range (length):
+                         if not(not(challenger.get_evaluated_function(z) > current.get_evaluated_function(z)) or not(challenger.get_evaluated_function(z) >= current.get_evaluated_function(z))):
+                            how_many_individuals_dominate_current +=1
+
+              current_rank = 1 + how_many_individuals_dominate_current
+              current.set_fitness(0,current_rank)
+
+
+    population.set_total_fitness(0,total_fitness
+
+      def calculate_population_niche_count(current,other):
+               
+
+      def calculate_population_shared_fitness(self,population):
+          for x in  range (self.__population_size):
+              current = self.__population[x]
+              niche_count = 0
+              for y in range (self.__population_size):
+                  niche_count += self.__calculate_niche_count(current,y)
+
+
+              current.set_fitness(get_fitness/niche_count)          
+          
+
+
       def assign_population_fitness(self,population):
           getattr(self.__fitness_instance,self.__fitness_method)(population,self.__fitness_options)
         

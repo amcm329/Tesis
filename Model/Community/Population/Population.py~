@@ -21,7 +21,7 @@ class Population:
           #valor que se usa muchas veces, por eso se pone como atributo.
           self.__population = [0]*self.__population_size  
           self.__length_vector_functions = len(vector_functions)
-          self.__total_fitness = [0]*self.__length_vector_functions
+          self.__total_fitness = 0
           self.__total_expected_values = [0]*self.__length_vector_functions
 
 
@@ -37,12 +37,12 @@ class Population:
           return self.__length_vector_functions
 
 
-      def get_total_fitness(self,position):
-          return self.__total_fitness[position]
+      def get_total_fitness(self):
+          return self.__total_fitness
 
 
-      def set_total_fitness(self,position,value):
-          self.__total_fitness[position] = value
+      def set_total_fitness(self,value):
+          self.__total_fitness = value
 
 
       def get_total_expected_value(self,position):
