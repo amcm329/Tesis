@@ -22,7 +22,7 @@ class Population:
           self.__population = [0]*self.__population_size  
           self.__length_vector_functions = len(vector_functions)
           self.__total_fitness = 0
-          self.__total_expected_values = [0]*self.__length_vector_functions
+          self.__total_expected_value = 0
 
 
       def get_individuals(self):
@@ -45,12 +45,12 @@ class Population:
           self.__total_fitness = value
 
 
-      def get_total_expected_value(self,position):
-          return self.__total_expected_values[position]
+      def get_total_expected_value(self):
+          return self.__total_expected_value
 
 
-      def set_total_expected_value(self,position,value):
-          self.__total_expected_values[position] = value      
+      def set_total_expected_value(self, value):
+          self.__total_expected_value = value      
 
      
       def add_individual(self,position,complete_chromosome):
@@ -59,13 +59,13 @@ class Population:
       
       def calculate_population_properties(self):
           for individual in self.__population:
-              for x in range (self.__length_vector_functions):
-                  #Assigning selection probability
-                  individual.set_selection_probability(x,individual.get_fitness(x)/self.__total_fitness[x])
-                  #Assigning expected value.
-                  individual.set_expected_value(x,individual.get_fitness(x)/(self.__total_fitness[x]/self.__population_size))
-                  #Assigning total expected value
-                  self.__total_expected_values[x] += individual.get_expected_value(x)     
+              #Assigning selection probability
+              individual.set_selection_probability(individual.get_fitness()/self.__total_fitness)
+              #Assigning expected value.
+              expected_value = individual.get_fitness()/(self.__total_fitness/self.__population_size)
+              individual.set_expected_value(expected_value)
+              #Assigning total expected value
+              self.__total_expected_value += expected_value     
 
 
       #Método que ordena los individuos en orden descendente.

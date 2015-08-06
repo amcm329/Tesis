@@ -7,14 +7,14 @@
 import random as aleatorio
 
 """Also called fitness proportionate selection."""
-def roulette(population,position,selection_options):
+def roulette(population,selection_options):
     chromosome_set = []
-    total_expected_value = population.get_total_expected_value(position)
+    total_expected_value = population.get_total_expected_value()
     #print "My_total_expected value: ",total_expected_value
-    my_population = population.get_population()
+    my_population = population.get_individuals()
     #print "Population: ", my_population    
 
-    for x in range (population.get_population_size()):
+    for x in range (population.get_size()):
         random_expected = aleatorio.uniform(0,total_expected_value)
      #   print "Random: ", random_expected
         cumulative_sum = 0.0
@@ -22,7 +22,7 @@ def roulette(population,position,selection_options):
         individual = ""
         while cumulative_sum < random_expected:
               individual = my_population[count]
-              cumulative_sum += individual.get_expected_value(position)
+              cumulative_sum += individual.get_expected_value()
               count += 1
         
       #  print "Individual: " + str(individual)

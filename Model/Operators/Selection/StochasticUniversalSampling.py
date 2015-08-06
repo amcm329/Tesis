@@ -7,7 +7,7 @@
 import random as aleatorio
 
 
-def stochastic_universal_sampling(population,position,options):
+def stochastic_universal_sampling(population,options):
     chromosome_set = []
     cumulative_sum = 0
     population_selected = 0
@@ -18,7 +18,7 @@ def stochastic_universal_sampling(population,position,options):
     
     while population_selected < population_size:
           individual = individuals[population_count % population_size]
-          cumulative_sum += individual.get_expected_value(position)
+          cumulative_sum += individual.get_expected_value()
           while cumulative_sum > ptr and population_selected < population_size:
                 chromosome_set.append(individual.get_complete_chromosome())
                 population_selected += 1

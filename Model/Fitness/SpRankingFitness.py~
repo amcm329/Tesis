@@ -16,6 +16,7 @@ def assign_sp_ranking_fitness(population,fitness_options):
         current_fitness = 2.0 - sp + 2.0 * (sp - 1.0) * (y/(population.get_size() - 1.0))
         individual.set_fitness(current_fitness)
         total_fitness += current_fitness        
+        
         y += 1
   
     population.set_total_fitness(total_fitness) 

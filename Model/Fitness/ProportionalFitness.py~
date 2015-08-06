@@ -11,9 +11,7 @@ def assign_proportional_fitness(population,fitness_options):
     for individual in population.get_individuals():
         #Asigning total fitness
         falta ver como se asigna el fitness proporcional
-
         current_fitness = individual.get_evaluated_function(x)
-
         individual.set_fitness(current_fitness)
         total_fitness += current_fitness 
 

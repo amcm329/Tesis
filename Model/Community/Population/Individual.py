@@ -17,10 +17,9 @@ class Individual:
 
           self.__decision_variables = {}
           self.__evaluated_functions = []
-          self.__pareto_dominance = 0
+          self.__pareto_dominants = 0
           self.__fitness = 0
-          self.__expected_values = [0]*len(vector_functions)
-                    
+          self.__expected_value = 0
 
       def get_complete_chromosome(self):
           return self.__complete_chromosome
@@ -34,11 +33,11 @@ class Individual:
           return self.__evaluated_functions[position]
 
 
-      def get_pareto_dominance(self):
+      def get_pareto_dominants(self):
           return self.__pareto_dominance
 
 
-      def set_pareto_dominance(self,value):
+      def set_pareto_dominants(self,value):
           self.__pareto_dominance = value     
 
       
@@ -51,12 +50,12 @@ class Individual:
 
      
       """Número de copias"""    
-      def get_expected_value(self,position):
-          return self.__expected_values[position]
+      def get_expected_value(self):
+          return self.__expected_value
 
 
-      def set_expected_value(self,position,value):
-          self.__expected_values[position]= value
+      def set_expected_value(self,value):
+          self.__expected_value = value
    
 
       # Expressions = variables + constants + user built-in functions

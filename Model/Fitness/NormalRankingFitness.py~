@@ -12,10 +12,9 @@ def assign_normal_ranking_fitness(population):
     y = 0
     #Luego se hace el ranking normal.
     for individual in population.get_population():
-        current_fitness = y + 1.0
-        individual.set_fitness(current_fitness)
-        total_fitness += current_fitness
-        
+        fitness = y + 1.0
+        total_fitness += fitness
+        individual.set_fitness(fitness)
         y += 1
 
     #al final se pone el total fitness.
