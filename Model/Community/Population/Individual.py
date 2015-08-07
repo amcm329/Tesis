@@ -34,11 +34,11 @@ class Individual:
 
 
       def get_pareto_dominants(self):
-          return self.__pareto_dominance
+          return self.__pareto_dominants
 
 
       def set_pareto_dominants(self,value):
-          self.__pareto_dominance = value     
+          self.__pareto_dominants = value     
 
       
       def get_fitness(self):

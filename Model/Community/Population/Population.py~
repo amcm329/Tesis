@@ -48,11 +48,7 @@ class Population:
       def get_total_expected_value(self):
           return self.__total_expected_value
 
-
-      def set_total_expected_value(self, value):
-          self.__total_expected_value = value      
-
-     
+ 
       def add_individual(self,position,complete_chromosome):
           self.__population[position] = i.Individual(complete_chromosome,self.__vector_functions,self.__available_expressions,self.__decimal_precision)
           

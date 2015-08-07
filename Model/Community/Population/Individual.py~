@@ -17,7 +17,7 @@ class Individual:
 
           self.__decision_variables = {}
           self.__evaluated_functions = []
-          self.__pareto_dominance = 0
+          self.__pareto_dominants = 0
           self.__fitness = 0
           self.__expected_value = 0
 
@@ -33,12 +33,12 @@ class Individual:
           return self.__evaluated_functions[position]
 
 
-      def get_pareto_dominance(self):
-          return self.__pareto_dominance
+      def get_pareto_dominants(self):
+          return self.__pareto_dominants
 
 
-      def set_pareto_dominance(self,value):
-          self.__pareto_dominance = value     
+      def set_pareto_dominants(self,value):
+          self.__pareto_dominants= value     
 
       
       def get_fitness(self):
