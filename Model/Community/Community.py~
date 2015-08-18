@@ -71,7 +71,7 @@ class Community:
           individuals = population.get_individuals()
           for x in range(population.get_size()):
               current = individuals[x]
-              how_many_dominates = 0
+              how_many_dominates = 0.0
               for y in range(population.get_size()):      
                   if y != x:
                      dominated = individuals[y]

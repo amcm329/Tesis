@@ -95,12 +95,13 @@ class Community:
                          if current_value >= dominated_value:
                             lt_condition = False
                             break    
-            
                
                      if let_condition == True and lt_condition == True:
                         how_many_dominates += 1
 
               current.set_pareto_dominants(how_many_dominates)
+
+
 
     
       def calculate_population_niche_count(current,other):
