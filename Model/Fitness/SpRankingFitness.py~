@@ -8,7 +8,7 @@ def assign_sp_ranking_fitness(population,fitness_options):
     total_fitness = 0
     sp = fitness_options[0] 
 
-    #Falta hacer la evaluación por el valor de la comparación frente de pareto.
+    #Falta hacer la evaluación por el valor del frente de pareto.
     population.get_population().sort(key=lambda individual: individual.evaluated_functions[x])
     y = 0
          

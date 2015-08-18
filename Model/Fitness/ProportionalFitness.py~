@@ -14,7 +14,8 @@ def assign_proportional_fitness(population,fitness_options):
     for x in range(population.get_size()):
         current = individuals[x]
         how_many_dominates = 0.0
-        for y in range(population.get_size()):        
+        for y in range(population.get_size()):
+           
             if y != x:
                dominated = individuals[y]
                #Less equal than
@@ -36,10 +37,12 @@ def assign_proportional_fitness(population,fitness_options):
                    dominated_value = dominated.get_evaluated_function(z)
                    if current_value >= dominated_value:
                       lt_condition = False
-                      break          
+                      break    
+            
                
                if let_condition == True and lt_condition == True:
-                  how_many_dominates += 1                    
+                  how_many_dominates += 1
+                     
          
         current.set_fitness(how_many_dominates)
         total_fitness += how_many_dominates
