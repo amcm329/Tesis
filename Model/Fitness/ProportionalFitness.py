@@ -5,14 +5,15 @@
 #Author: Castillo Medina Aarón Martín.
 
 #El fitness proporcional es numero de soluciones que domina x a y 
+#Malo si se usan pocos elementos
 
 def assign_proportional_fitness(population,fitness_options):
-    total_fitness = 0
+    total_fitness = 0.0
     individuals = population.get_individuals()
    
     for x in range(population.get_size()):
         current = individuals[x]
-        how_many_dominates = 0
+        how_many_dominates = 0.0
         for y in range(population.get_size()):
            
             if y != x:
@@ -41,7 +42,7 @@ def assign_proportional_fitness(population,fitness_options):
                
                if let_condition == True and lt_condition == True:
                   how_many_dominates += 1
-                
+                     
          
         current.set_fitness(how_many_dominates)
         total_fitness += how_many_dominates

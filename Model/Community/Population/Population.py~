@@ -55,9 +55,8 @@ class Population:
       
       def calculate_population_properties(self):
           for individual in self.__population:
-              #Assigning selection probability
-              individual.set_selection_probability(individual.get_fitness()/self.__total_fitness)
               #Assigning expected value.
+              print "El valor: ", individual.get_fitness()
               expected_value = individual.get_fitness()/(self.__total_fitness/self.__population_size)
               individual.set_expected_value(expected_value)
               #Assigning total expected value

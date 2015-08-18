@@ -16,7 +16,7 @@ def start_sequence():
     settings = "Settings.xml"
 
     generations = 3
-    population_size = 6
+    population_size = 50
     vector_functions = ["12*(x-y)","pi**y","11*(x+y)"]
     vector_variables = [["x",[-5,7]],["y",[3,6]],["z",[-8,-2]]]
     available_expressions = {"pi":math.pi,"cos":math.cos}#,"hola":math.tan}

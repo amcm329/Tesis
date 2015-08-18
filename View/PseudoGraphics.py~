@@ -15,7 +15,7 @@ def start_sequence():
     features = "Features.xml"
     settings = "Settings.xml"
 
-    generations = 10
+    generations = 3
     population_size = 6
     vector_functions = ["12*(x-y)","pi**y","11*(x+y)"]
     vector_variables = [["x",[-5,7]],["y",[3,6]],["z",[-8,-2]]]
