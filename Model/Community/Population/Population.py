@@ -4,9 +4,9 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-import operator as o
-import random as r
-import Individual as i
+import operator as operador 
+import random as aleatorio 
+import Individual as individuo
 
 #Complete population flag will be used in the corresponding methods, not here.
 class Population:
@@ -50,7 +50,7 @@ class Population:
 
  
       def add_individual(self,position,complete_chromosome):
-          self.__population[position] = i.Individual(complete_chromosome,self.__vector_functions,self.__available_expressions,self.__decimal_precision)
+          self.__population[position] = individuo.Individual(complete_chromosome,self.__vector_functions,self.__available_expressions,self.__decimal_precision)
           
       
       def calculate_population_properties(self):
@@ -63,12 +63,12 @@ class Population:
 
 
       #Método que ordena los individuos en orden descendente.
-      def sort_individuals(self,method,position,is_descendent=True):
-          self.__population.sort(key=o.methodcaller(method,position),reverse=is_descendent)
+      def sort_individuals(self,method,is_descendent):
+          self.__population.sort(key=operador.methodcaller(method),reverse=is_descendent)
 
 
       def shuffle_individuals(self):
-          r.shuffle(self.__population)
+          aleatorio.shuffle(self.__population)
 
 
       def print_population(self):

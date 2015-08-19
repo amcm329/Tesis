@@ -59,6 +59,7 @@ def vega_algorithm(generations,population_size,vector_functions,vector_variables
            for y in range (len(parents_subpopulations)):
                current_subpopulation = parents_subpopulations[y]
                comunidad.evaluate_population_functions(current_subpopulation)
+               comunidad.calculate_population_pareto_dominance(current_subpopulation)
                #aquí va a haber problema con el fitness.
                comunidad.assign_population_fitness(current_subpopulation)
                final_information[y].append(comunidad.get_best_individual(current_subpopulation,y))

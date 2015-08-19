@@ -71,10 +71,9 @@ class Community:
           individuals = population.get_individuals()
           for x in range(population.get_size()):
               current = individuals[x]
-              how_many_dominates = 0.0
               for y in range(population.get_size()):      
                   if y != x:
-                     dominated = individuals[y]
+                     about_being_dominated = individuals[y]
                      #Less equal than
                      let_condition = True
                      #Less equal                 
@@ -96,13 +95,10 @@ class Community:
                             lt_condition = False
                             break    
                
+                     #It means that about being dominated is dominated by current
                      if let_condition == True and lt_condition == True:
-                        how_many_dominates += 1
-
-              current.set_pareto_dominants(how_many_dominates)
-
-
-
+                        prior_value = about_being_dominated.get_pareto_dominants()
+                        about_being_dominated.set_pareto_dominants(prior_value + 1)
     
       def calculate_population_niche_count(current,other):
           pass               
