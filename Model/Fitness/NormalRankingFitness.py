@@ -9,7 +9,7 @@
 def assign_normal_ranking_fitness(population):
     total_fitness = 0.0
     #Primero se ordenan los elementos con base en la cosa esa de pareto.    
-    population.get_individuals().sort(key=lambda individual: individual.evaluated_functions[x])
+    population.sort_individuals(self,"get_pareto_dominants",False):
     y = 0
     #Luego se hace el ranking normal.
     for individual in population.get_population():

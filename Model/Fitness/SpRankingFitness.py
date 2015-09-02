@@ -4,12 +4,12 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
+#Orden ascendente para que pueda hacerse bien el ranking.
 def assign_sp_ranking_fitness(population,fitness_options):
     total_fitness = 0
     sp = fitness_options[0] 
 
-    #Falta hacer la evaluación por el valor de la comparación frente de pareto.
-    population.get_population().sort(key=lambda individual: individual.evaluated_functions[x])
+    population.sort_individuals(self,"get_pareto_dominants",False):
     y = 0
          
     for individual in population.get_individuals():
