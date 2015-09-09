@@ -6,6 +6,7 @@
    <Fitness location="Model.Fitness.">
       <Technique name="Proportional Fitness" class="ProportionalFitness" method="assign_proportional_fitness" />
       <Technique name="Linear Scaling Fitness" class="LinearScalingFitness" method="assing_linear_scaling_fitness"/>
+      <Technique name="Normal Ranking Fitness" class="NormalRankingFitness" method="assign_normal_ranking_fitness" />
       <Technique name="Linear Ranking Fitness" class="LinearRankingFitness" method="assign_linear_ranking_fitness"/>
       <Technique name="Non-Linear Ranking Fitness" class="NonLinearRankingFitness" method="assign_nonlinear_ranking_fitness"/>
       <Technique name="Pareto Dominance Ranking Fitness" class="ParetoDominanceRankingFitness" method="assign_linear_ranking_fitness"/>
