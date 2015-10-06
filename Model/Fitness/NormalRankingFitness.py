@@ -5,7 +5,7 @@
 #Author: Castillo Medina Aarón Martín.
 
 #Faltan las evaluated_functions
-
+existe el linear fitness y el nonlinear fitness
 def assign_normal_ranking_fitness(population):
     total_fitness = 0.0
     #Primero se ordenan los elementos con base en la cosa esa de pareto.    
