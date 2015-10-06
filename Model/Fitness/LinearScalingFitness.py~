@@ -11,7 +11,7 @@ def assign_linear_scaling_fitness(population,fitness_options):
     beta = fitness_options[1]
     total_fitness = 0.0
     for individual in population.get_individuals():
-        current_fitness = alpha*individual.get_evaluated_function(x) + beta
+        current_fitness = alpha*individual.get_pareto_dominants() + beta
         individual.set_fitness(current_fitness)
         total_fitness += current_fitness 
      

@@ -4,8 +4,6 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-#falta ver como se modifica el get_evaluated
-#poner las esas cosas de pareto en vez del get evaluated.
 def assign_linear_scaling_fitness(population,fitness_options):
     alpha = fitness_options[0]
     beta = fitness_options[1]
