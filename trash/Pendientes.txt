@@ -1,6 +1,0 @@
-1.- modificar formato xml
-2.- añadir elementos xml
-3.- eliminar elementos xml
-4.- metodos seleccion
-5.-metodos cruza
-6.- metodos mutacion
