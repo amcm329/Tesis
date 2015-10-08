@@ -4,7 +4,7 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
-def deriv(polynome):
+def derivate(polynome):
     for index in range(len(polynome)):
             polynome[index]*=index
     
@@ -27,14 +27,14 @@ def calculate_root(polynome,x_0,epsilon):
     for number  in polynome:
             polynome_1.append(number)    
     
-    deriv(polynome_1)
+    derivate(polynome_1)
     while abs(value) >= epsilon:
-        derivalue=(evaluate_polynome(polynome_1,x_0))
+        deriv_value=(evaluate_polynome(polynome_1,x_0))
         if derivalue == 0:
             x_0 = 0.0
             break
         
-        x_0 = x_0 - (value/derivalue)
+        x_0 = x_0 - (value/deriv_value)
         value=(evaluate_polynome(polynome,x_0))
        
     return x_0
