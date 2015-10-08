@@ -53,11 +53,14 @@ def assign_non_linear_ranking_fitness(population,fitness_options):
 
     for x in range (population_size - 1,-1,-1):
         polynome.append(sp)
-    
+
     solution = calculate_root(polynome,0.0,0.0000001)         
+
+    falta la suma
+
     y = 0
     for individual in population.get_individuals():
-        current_fitness = (population_size*(solution**y))/ 
+        current_fitness = (population_size*(solution**y))/ falta terminar esto
         individual.set_fitness(current_fitness)
         total_fitness += current_fitness        l
         y += 1
