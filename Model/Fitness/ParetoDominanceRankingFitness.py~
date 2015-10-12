@@ -5,10 +5,8 @@
 #Author: Castillo Medina Aarón Martín.
 
 def assign_pareto_dominance_rank_based_fitness(population,fitness_options):
-    #Primero asignar el rango como fitness
-
-    
-     1 + por los que esta dominado
+    #Primero asignar el rango
+     1 + dominados
 
     #Ordenar ascendente con base en el rango.
     population.sort_individuals("get_pareto_dominants",False)

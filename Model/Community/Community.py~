@@ -66,7 +66,7 @@ class Community:
               individual.evaluate_functions(decision_variables)
 
 
-      aquí de una vez poner que x domina a y que y está dominado por x
+
       def calculate_population_pareto_dominance(self,population):
           individuals = population.get_individuals()
           for x in range(population.get_size()):

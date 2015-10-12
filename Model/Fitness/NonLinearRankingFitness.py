@@ -40,12 +40,12 @@ def calculate_root(polynome,x_0,epsilon):
     return x_0
             
 
-#Orden ascendente para que pueda hacerse bien el ranking.
-#Aqui no estoy seguro si es en orden ascendente o descendente
 def assign_non_linear_ranking_fitness(population,fitness_options):
     total_fitness = 0.0 
+    sum_roots = 0.0
     sp = fitness_options[0] 
     population_size = population.get_size()
+    #Orden ascendente
     population.sort_individuals(self,"get_pareto_dominants",False)
     
     #Creating polynome
@@ -56,11 +56,12 @@ def assign_non_linear_ranking_fitness(population,fitness_options):
 
     solution = calculate_root(polynome,0.0,0.0000001)         
 
-    falta la suma
+    for x in range (population_size):
+        sum_roots += solution**x
 
     y = 0
     for individual in population.get_individuals():
-        current_fitness = (population_size*(solution**y))/ falta terminar esto
+        current_fitness = (population_size*(solution**y))/sum_roots
         individual.set_fitness(current_fitness)
         total_fitness += current_fitness        l
         y += 1
