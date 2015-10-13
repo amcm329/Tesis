@@ -7,9 +7,9 @@
 import random as aleatorio
 
 def float_point_mutation(chromosome,mutation_options):
-    mutation_probability = mutation_options['mutation_probability']
-    decimal_precision = mutation_options['decimal_precision']
-    vector_variables = mutation_options['vector_variables']
+    mutation_probability = mutation_options[0]
+    decimal_precision = mutation_options[1]
+    vector_variables = mutation_options[2]
     precision_string = "{0:." + str(decimal_precision) + "f}"
     mutated_chromosome = []
     for x in range(len(chromosome)):

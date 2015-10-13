@@ -9,7 +9,7 @@ import random as aleatorio
 def probabilistic_tournament(population,position,selection_options):
     population_count = 0
     chromosome_set = []
-    contenders_amount = selection_options['contenders_amount']
+    contenders_amount = selection_options[0]
     population_size = population.get_size()
     individuals = population.get_individuals()
 

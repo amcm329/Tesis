@@ -66,7 +66,6 @@ class Community:
               individual.evaluate_functions(decision_variables)
 
 
-
       def calculate_population_pareto_dominance(self,population):
           individuals = population.get_individuals()
           for x in range(population.get_size()):
@@ -95,13 +94,30 @@ class Community:
                             lt_condition = False
                             break    
                
-                     #It means that about being dominated is dominated by current
+                     #It means that about-being-dominated is dominated by current
+                     #And current dominates about-being-dominated.
                      if let_condition == True and lt_condition == True:
-                        prior_value = about_being_dominated.get_pareto_dominants()
-                        about_being_dominated.set_pareto_dominants(prior_value + 1)
+                        current.set_pareto_dominates(current.get_pareto_dominates() + 1)
+                        about_being_dominated.set_pareto_dominated(about_being_dominated.get_pareto_dominated() + 1)
     
-      def calculate_population_niche_count(current,other):
-          pass               
+
+      def using_sharing_function(individual_i,individual_j,sigma,alpha,distance_options):
+          result = 0.0
+          dij = getattr(self.__sharing_fitness_instance,"calculate_distance")(individual_i,individual_j,distance_options)
+          
+          if dij < sigma:
+             result = 1 - (dij/sigma)**alpha
+
+          return result
+        
+
+      falta calcular el shared_fitness, de hecho creo que en el algoritmo se 
+      diferenciar alpha de fitness de alpha aquí.
+      def calculate_niche_count(individual_i,population,sigma,alpha,distance_options):
+          result = 0.0
+          for individual_j in population.get_individuals():
+              if individual_i != individual_j:
+                 result += using 
 
       def calculate_population_shared_fitness(self,population):
           for x in  range (self.__population_size):

@@ -8,7 +8,7 @@ import random as aleatorio
 
 """Recordar que 0.0 es el 0% y 1.0 es el 100%"""     
 def binary_mutation(chromosome,mutation_options):
-    mutation_probability = mutation_options['mutation_probability']
+    mutation_probability = mutation_options[0]
     mutated_chromosome = []  
     for gen in chromosome: 
         number = aleatorio.random()

@@ -43,10 +43,10 @@ def calculate_root(polynome,x_0,epsilon):
 def assign_non_linear_ranking_fitness(population,fitness_options):
     total_fitness = 0.0 
     sum_roots = 0.0
-    sp = fitness_options[0] 
+    sp = fitness_options['sp'] 
     population_size = population.get_size()
     #Orden ascendente
-    population.sort_individuals(self,"get_pareto_dominants",False)
+    population.sort_individuals(self,"get_pareto_dominates",False)
     
     #Creating polynome
     polynome = [sp - population_size]

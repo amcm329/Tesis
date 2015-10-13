@@ -34,13 +34,12 @@ class Individual:
           return self.__evaluated_functions[position]
 
 
-      def get_pareto_dominates(self):
-          return self.__dominates
+      def get_pareto_dominants(self):
+          return self.__dominated
 
 
-      def set_pareto_dominates(self,value):
-          self.__dominates = value     
-
+      def set_pareto_dominants(self,value):
+          self.__dominated = value     
 
       def get_pareto_dominated(self):
           return self.__dominated

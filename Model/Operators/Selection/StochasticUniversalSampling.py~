@@ -7,7 +7,7 @@
 import random as aleatorio
 
 
-def stochastic_universal_sampling(population,selection_options):
+def stochastic_universal_sampling(population,options):
     chromosome_set = []
     cumulative_sum = 0
     population_selected = 0

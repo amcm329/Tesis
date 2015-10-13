@@ -1,0 +1,16 @@
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
+
+#Version 2.0
+#Author: Castillo Medina Aarón Martín.
+
+import math
+
+def calculate_distance(individual_i,individual_j,):
+    sum_squared = 0.0
+
+    for 
+
+    return sum_squared**(1.0/2.0)
+
+    
