@@ -20,10 +20,15 @@ class Individual:
           self.__dominates = 0
           self.__is_dominated = 0
           self.__fitness = 0
+          self.__niche_count = 0
           self.__expected_value = 0
+
 
       def get_complete_chromosome(self):
           return self.__complete_chromosome
+
+      def get_vector_functions(self):
+          return self.__vector_functions
 
 
       def get_decision_variables(self):
@@ -56,6 +61,14 @@ class Individual:
 
       def set_fitness(self,value):
           self.__fitness = value     
+
+     
+      def get_niche_count(self):
+          return self.__niche_count
+ 
+
+      def set_niche_count(self,value):
+          self.__niche_count = value
 
      
       """Número de copias"""    

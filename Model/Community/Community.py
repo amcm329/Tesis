@@ -11,7 +11,7 @@ import Population.Population as poblacion
 #asignar fitness implica de una vez evaluar en funciones objetivo.
 #Cambiarle nombre a length subchromosomes
 class Community:
-      def __init__(self,vector_functions,vector_variables,available_expressions,decimal_precision,representation_instance,representation_options,fitness_instance,fitness_method,fitness_options,selection_instance,selection_method,selection_options,crossover_instance,crossover_method,crossover_options,mutation_instance,mutation_method,mutation_options):
+      def __init__(self,vector_functions,vector_variables,available_expressions,decimal_precision,representation_instance,representation_options,fitness_instance,fitness_method,fitness_options,shared_fitness_instance,shared_fitness_options,selection_instance,selection_method,selection_options,crossover_instance,crossover_method,crossover_options,mutation_instance,mutation_method,mutation_options):
           self.__vector_functions = vector_functions
           self.__vector_variables = vector_variables
           self.__available_expressions = available_expressions
@@ -21,6 +21,8 @@ class Community:
           self.__fitness_instance = fitness_instance
           self.__fitness_method = fitness_method
           self.__fitness_options = fitness_options
+          self.__shared_fitness_instance = shared_fitness_instance 
+          self.__shared_fitness_options = shared_fitness_options
           self.__selection_instance = selection_instance
           self.__selection_method = selection_method
           self.__selection_options = selection_options
@@ -99,42 +101,38 @@ class Community:
                      if let_condition == True and lt_condition == True:
                         current.set_pareto_dominates(current.get_pareto_dominates() + 1)
                         about_being_dominated.set_pareto_dominated(about_being_dominated.get_pareto_dominated() + 1)
-    
-
-      def using_sharing_function(individual_i,individual_j,sigma,alpha,distance_options):
-          result = 0.0
-          dij = getattr(self.__sharing_fitness_instance,"calculate_distance")(individual_i,individual_j,distance_options)
-          
-          if dij < sigma:
-             result = 1 - (dij/sigma)**alpha
-
-          return result
-        
-
-      falta calcular el shared_fitness, de hecho creo que en el algoritmo se 
-      diferenciar alpha de fitness de alpha aquí.
-      euclidean distance
-      def calculate_niche_count(individual_i,population,sigma,alpha,distance_options):
-          result = 0.0
-          for individual_j in population.get_individuals():
-              if individual_i != individual_j:
-                 result += using 
-
-      def calculate_population_shared_fitness(self,population):
-          for x in  range (self.__population_size):
-              current = self.__population[x]
-              niche_count = 0
-              for y in range (self.__population_size):
-                  niche_count += self.__calculate_niche_count(current,y)
-
-
-              current.set_fitness(get_fitness/niche_count)          
-          
-
+           
 
       def assign_population_fitness(self,population):
           getattr(self.__fitness_instance,self.__fitness_method)(population,self.__fitness_options)
+  
+
+      def __using_sharing_function(individual_i,individual_j):
+            sigma = self.__shared_fitness_options['sigma']
+            alpha_sharing_function = self.__shared_fitness_options['alpha_sharing_function']
+            result = 0.0
+            dij = getattr(self.__shared_fitness_instance,"calculate_distance")(individual_i,individual_j,self.__shared_fitness_options)
+          
+            if dij < sigma:
+               result = 1 - (dij/sigma)**alpha_sharing_function
+
+            return result
         
+
+      def calculate_population_niche_count(population):
+          for individual_i in population.get_individuals():
+              result = 0.0
+              for individual_j in population.get_individuals():
+                  if individual_i != individual_j:
+                     result += self.__using_sharing_function(individual_i,individual_j)
+        
+              individual_i.set_niche_count(result)
+              
+
+      def calculate_population_shared_fitness(self,population):
+          for individual in population.get_individuals():
+              individual.set_fitness(individual.get_fitness()/individual.get_niche_count())          
+ 
   
       def execute_selection(self,parents,position):
           return getattr(self.__selection_instance,self.__selection_method)(parents,position,self.__selection_options)

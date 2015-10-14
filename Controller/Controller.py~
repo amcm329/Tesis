@@ -70,7 +70,6 @@ def execute_algorithm(generations,population_size,vector_functions,vector_variab
         selection_instance = result_instances[5]
         crossover_instance = result_instances[6]
         mutation_instance = result_instances[7]
-
         results = getattr(algorithm_instance,algorithm_method)(generations,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,
  community_instance,community_name,
  representation_instance,representation_options,
@@ -82,4 +81,4 @@ def execute_algorithm(generations,population_size,vector_functions,vector_variab
                 
     return results
 
-falta llamarlos desde el main
+

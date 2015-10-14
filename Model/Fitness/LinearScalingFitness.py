@@ -5,11 +5,11 @@
 #Author: Castillo Medina Aarón Martín.
 
 def assign_linear_scaling_fitness(population,fitness_options):
-    alpha = fitness_options['alpha']
+    alpha_linear_scaling_fitness = fitness_options['alpha_linear_scaling_fitness']
     beta = fitness_options['beta']
     total_fitness = 0.0
     for individual in population.get_individuals():
-        current_fitness = alpha*individual.get_pareto_dominates() + beta
+        current_fitness = alpha_linear_scaling_fitness*individual.get_pareto_dominates() + beta
         individual.set_fitness(current_fitness)
         total_fitness += current_fitness 
      

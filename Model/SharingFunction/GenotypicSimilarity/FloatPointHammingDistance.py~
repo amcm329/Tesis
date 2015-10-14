@@ -8,7 +8,7 @@ def calculate_distance(individual_i,individual_j,distance_options):
     chromosome_i = individual_i.get_complete_chromosome()
     chromosome_j = individual_j.get_complete_chromosomse()
     hamming_distance = 0.0
-    epsilon = distance_options[0]
+    epsilon = distance_options['epsilon']
 
     for x in range (len(chromosome_i)):
         gen_i = chromosome_i[x]

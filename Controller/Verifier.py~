@@ -153,7 +153,7 @@ def verify_algorithm_settings(generations,population_size,decimal_precision,comm
       results.append(verify_algorithm_instance(algorithm_class))
       results.append(verify_representation_instance(representation_class))
       results.append(verify_fitness_instance(fitness_class))
-      results.append(verify_shared_fitness_instance(shared_fitness_class))
+      results.append(verify_fitness_instance(shared_fitness_class))
       results.append(verify_selection_instance(selection_class))
       results.append(verify_crossover_instance(crossover_class))
       results.append(verify_mutation_instance(mutation_class))
