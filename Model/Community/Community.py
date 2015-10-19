@@ -151,12 +151,11 @@ class Community:
           getattr(self.__fitness_instance,"assign_fitness")(population,self.__fitness_options)
   
 
-      def __using_sharing_function(individual_i,individual_j):
+      def __using_sharing_function(self,individual_i,individual_j):
             sigma = self.__shared_fitness_options["sigma_sharing_function"]
             alpha_sharing_function = self.__shared_fitness_options["alpha_sharing_function"]
             result = 0.0
             dij = getattr(self.__shared_fitness_instance,"calculate_distance")(individual_i,individual_j,self.__shared_fitness_options)
-          
             if dij < sigma:
                result = 1 - (dij/sigma)**alpha_sharing_function
 

@@ -6,7 +6,7 @@
 
 def calculate_distance(individual_i,individual_j,distance_options):
     chromosome_i = individual_i.get_complete_chromosome()
-    chromosome_j = individual_j.get_complete_chromosomse()
+    chromosome_j = individual_j.get_complete_chromosome()
     hamming_distance = 0.0
 
     for x in range (len(chromosome_i)):

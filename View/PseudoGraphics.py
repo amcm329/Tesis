@@ -22,17 +22,17 @@ def start_sequence():
     available_expressions = {"pi":math.pi,"cos":math.cos}#,"hola":math.tan}
     decimal_precision = 4
     community_class = "Model.Community.Community"
-    algorithm_class = "Model.MOEA.VEGA"
-    
-    #representation_class = "Model.ChromosomalRepresentation.BinaryRepresentation"
-    representation_class = "Model.ChromosomalRepresentation.FloatPointRepresentation"
-    representation_options  = {"gray_coding_binary_representation":False}
+    #algorithm_class = "Model.MOEA.VEGA"
+    algorithm_class = "Model.MOEA.MOGA"
+
+    representation_class = "Model.ChromosomalRepresentation.BinaryRepresentation"
+    #representation_class = "Model.ChromosomalRepresentation.FloatPointRepresentation"
+    representation_options  = {"gray_coding_binary_representation":True}
  
  
-    #fitness_class = "Model.Fitness.LinearRankingFitness"
+    fitness_class = "Model.Fitness.LinearRankingFitness"
     #fitness_class = "Model.Fitness.LinearScalingFitness"
     #fitness_class = "Model.Fitness.NonLinearRankingFitness"
-    fitness_class = "Model.Fitness.ParetoDominanceRankingFitness"   
     #fitness_class = "Model.Fitness.ProportionalFitness"
     fitness_options = {"sp_linear_ranking_fitness":0.5,
                        "alpha_linear_scaling_fitness":1,
@@ -40,29 +40,30 @@ def start_sequence():
                        "sp_non_linear_ranking_fitness":0.5}
 
 
-    #shared_fitness_class = "Model.SharingFunction.GenotypicSimilarity.BinaryHammingDistance"
+    shared_fitness_class = "Model.SharingFunction.GenotypicSimilarity.BinaryHammingDistance"
     #shared_fitness_class = "Model.SharingFunction.GenotypicSimilarity.FloatPointHammingDistance"
-    shared_fitness_class  = "Model.SharingFunction.PhenotypicSimilarity.EuclideanDistance"
-    shared_fitness_options = {"alpha_sharing_function":0.3,
-                              "sigma_sharing_function":0.8,
+    #shared_fitness_class  = "Model.SharingFunction.PhenotypicSimilarity.EuclideanDistance"
+    shared_fitness_options = {"alpha_sharing_function":5,
+                              "sigma_sharing_function":800,
                               "epsilon_floatpoint_hamming_distance":0.5}
 
+
     #revisar por qué no dan los individuos que deben
-    #selection_class = "Model.Operator.Selection.Roulette" 
+    selection_class = "Model.Operator.Selection.Roulette" 
     #selection_class = "Model.Operator.Selection.StochasticUniversalSampling"
-    selection_class = "Model.Operator.Selection.ProbabilisticTournament"
+    #selection_class = "Model.Operator.Selection.ProbabilisticTournament"
     selection_options = {"contenders_amount_probabilistic_tournament":8}
     
     #crossover_class = "Model.Operator.Crossover.UniformCrossover"
-    #crossover_class = "Model.Operator.Crossover.NPointsCrossover"
-    crossover_class = "Model.Operator.Crossover.FloatPointCrossover"
+    crossover_class = "Model.Operator.Crossover.NPointsCrossover"
+    #crossover_class = "Model.Operator.Crossover.FloatPointCrossover"
     crossover_options = {"probability_crossover_general":0.70,
                          "how_many_points_npoints_crossover":2,
                          "flip_floatpoint_crossover":0.50,
                          "pmask_uniform_crossover":0.5}
     
-    #mutation_class = "Model.Operator.Mutation.BinaryMutation"
-    mutation_class = "Model.Operator.Mutation.FloatPointMutation"
+    mutation_class = "Model.Operator.Mutation.BinaryMutation"
+    #mutation_class = "Model.Operator.Mutation.FloatPointMutation"
     mutation_options = {"probability_mutation_general":0.08,
                         "decimal_precision_floatpoint_mutation":decimal_precision,
                         "vector_variables_floatpoint_mutation":vector_variables}

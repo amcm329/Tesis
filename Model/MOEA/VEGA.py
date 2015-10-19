@@ -68,6 +68,8 @@ def execute_moea(generations,population_size,vector_functions,vector_variables,a
                comunidad.assign_population_fitness(current_subpopulation)
                final_information[y].append(comunidad.get_best_individual(current_subpopulation,y))
                selected_parents_chromosomes = comunidad.execute_selection(current_subpopulation)
+               #Este for se necesita para adjuntar al final todos los individuos de todas las subpoblaciones, por eso se
+               #crea children_chromosomes
                for parent_chromosome in selected_parents_chromosomes: 
                    children_chromosomes.append(parent_chromosome)
                

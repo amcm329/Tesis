@@ -44,14 +44,14 @@ def verify_delete_xml_features(data,category_name,technique_name,technique_class
 
 
 def verify_community_instance(community_class):
-    #algorithm_instance = ""
-    #try:
+    community_instance = ""
+    try:
         community_instance = __import__(community_class, globals(), locals(), ['object'], -1) 
      
-    #except:
-    #    algorithm_instance = "ERROR: Class: Verifier. Method: verify_algorithm_insance. Message: Algorithm not found"
+    except:
+        community_instance = "ERROR: Class: Verifier. Method: verify_algorithm_insance. Message: Algorithm not found"
 
-        return community_instance
+    return community_instance
 
 def verify_algorithm_instance(algorithm_class):
     #algorithm_instance = ""
@@ -76,15 +76,13 @@ def verify_representation_instance(representation_class):
  
 
 def verify_fitness_instance(fitness_class):
-    print "La clase: ", fitness_class
     fitness_instance = ""
-    #try:
-    fitness_instance = __import__(fitness_class, globals(), locals(), ['object'], -1) 
+    try:
+        fitness_instance = __import__(fitness_class, globals(), locals(), ['object'], -1) 
      
-    #except:
-    #     fitness_instance = "ERROR: Class: Verifier. Method: verify_fitness_instance. Message: Fitness not found"
+    except:
+        fitness_instance = "ERROR: Class: Verifier. Method: verify_fitness_instance. Message: Fitness not found"
   
-    print fitness_instance
     return fitness_instance
  
 

@@ -30,9 +30,36 @@ def execute_moea(generations,population_size,vector_functions,vector_variables,a
  
     #Assign linearly scaled fitness
     comunidad.assign_population_fitness(parents)
-
  
     #Assign shared fitness
+    comunidad.calculate_population_shared_fitness(parents)
+
     for x in range (1, generations + 1):
-        selected_parents_chromosomes = comunidad.execute(parents,position)  
-  
+        print "Generation: ", x
+        selected_parents_chromosomes = comunidad.execute_selection(parents)
+        children = comunidad.execute_crossover_and_mutation(selected_parents_chromosomes)
+        #evaluate objective functions
+        comunidad.evaluate_population_functions(children)
+
+        #extra step
+        comunidad.calculate_population_pareto_dominance(children)
+
+        #assign rank based on pareto dominance
+        comunidad.assign_rank_based_on_pareto_dominance(children)
+               
+        #Compute niche count
+        comunidad.calculate_population_niche_count(children)
+ 
+        #Assign linearly scaled fitness
+        comunidad.assign_population_fitness(children)
+ 
+        #Assign shared fitness
+        comunidad.calculate_population_shared_fitness(children)
+   
+        for y in range(parents.get_length_vector_functions()):        
+            final_information[y].append(comunidad.get_best_individual(children,y))
+               
+        parents = children
+
+    
+    return final_information
