@@ -37,8 +37,7 @@ def load_xml_features(features_filename):
         for technique in category:
             technique_name = technique.get('name')        
             technique_class = technique.get('class')
-            technique_method = technique.get('method')
-            options.append((category_id,technique_id,category_location,technique_name,technique_class,technique_method))
+            options.append((category_id,technique_id,category_location,technique_name,technique_class))
             
             technique_id += 1
                 
@@ -52,7 +51,7 @@ def write_xml_features(features_filename,category_location,technique_name,techni
     tree = et.parse(path + "/" + features_filename)
     root = tree.getroot()
     category = root.find(category_location) 
-    new_child = et.SubElement(category, "Technique name=\"" + technique_name + "\" class=\"" + technique_class + "\" method=\"" + technique_method + "\"")
+    new_child = et.SubElement(category, "Technique name=\"" + technique_name + "\" class=\"" + technique_class + "\"")
     indent(root)
     tree.write(path + "/" + features_filename)
    
@@ -65,7 +64,7 @@ def delete_xml_features(features_filename,category_location,technique_name,techn
     category = root.find(category_location)
 
     for technique in category:
-        if technique.get('name') == technique_name and technique.get('class') == technique_class and technique.get('method') == technique_method: 
+        if technique.get('name') == technique_name and technique.get('class') == technique_class: 
            category.remove(technique)
     
     indent(root)

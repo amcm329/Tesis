@@ -30,7 +30,7 @@ def calculate_root(polynome,x_0,epsilon):
     derivate(polynome_1)
     while abs(value) >= epsilon:
         deriv_value=(evaluate_polynome(polynome_1,x_0))
-        if derivalue == 0:
+        if deriv_value == 0:
             x_0 = 0.0
             break
         
@@ -38,15 +38,15 @@ def calculate_root(polynome,x_0,epsilon):
         value=(evaluate_polynome(polynome,x_0))
        
     return x_0
-            
 
-def assign_non_linear_ranking_fitness(population,fitness_options):
+
+def assign_fitness(population,fitness_options):
     total_fitness = 0.0 
     sum_roots = 0.0
-    sp = fitness_options['sp'] 
+    sp = fitness_options["sp_non_linear_ranking_fitness"] 
     population_size = population.get_size()
     #Orden ascendente
-    population.sort_individuals(self,"get_pareto_dominates",False)
+    population.sort_individuals("get_pareto_dominates",False)
     
     #Creating polynome
     polynome = [sp - population_size]
@@ -63,7 +63,7 @@ def assign_non_linear_ranking_fitness(population,fitness_options):
     for individual in population.get_individuals():
         current_fitness = (population_size*(solution**y))/sum_roots
         individual.set_fitness(current_fitness)
-        total_fitness += current_fitness        l
+        total_fitness += current_fitness
         y += 1
   
     population.set_total_fitness(total_fitness) 

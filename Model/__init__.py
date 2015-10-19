@@ -9,4 +9,4 @@ import Community
 import Debug
 import Fitness
 import MOEA
-import Operators
+import Operator

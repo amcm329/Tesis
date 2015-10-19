@@ -21,10 +21,10 @@ def verify_write_xml_features(data,category_name,technique_name,technique_class,
     verifier_code = "OK"
 
     #Primero se verifica que la categoria exista.
-    if category_name in ["Representation","Fitness","Selection","Crossover","Mutation","MOEA"]:
+    if category_name in ["Representation","Fitness","SharingFunction","Selection","Crossover","Mutation","MOEA"]:
        for element in data:
            #Se verifica que la t
-           if technique_name == element[3] and technique_class == element[4] and technique_method == element[5]:
+           if technique_name == element[3] and technique_class == element[4]:
               verifier_code = "ERROR. Class: Parser. Method: write_data_xml. Message: Technique already exists"              
                
     else:
@@ -37,7 +37,7 @@ def verify_delete_xml_features(data,category_name,technique_name,technique_class
     verifier_code = "ERROR. Class: Parser. Method: delete_data_xml. Message: Technique doesn't exist"
     for element in data:
          #Se verifica que la tecnica exista antes de ser eliminada.
-         if technique_name == element[3] and technique_class == element[4] and technique_method == element[5]:
+         if technique_name == element[3] and technique_class == element[4]:
             verifier_code = "OK"              
                
     return verifier_code
@@ -70,19 +70,21 @@ def verify_representation_instance(representation_class):
         representation_instance = __import__(representation_class, globals(), locals(), ['object'], -1) 
      
     except:
-        representation_instance = "ERROR: Class: Verifier. Method: verify_representation_insance. Message: Representation not found"
+        representation_instance = "ERROR: Class: Verifier. Method: verify_representation_instance. Message: Representation not found"
 
     return representation_instance
  
 
 def verify_fitness_instance(fitness_class):
+    print "La clase:-",fitness_class,"-"
     fitness_instance = ""
-    try:
-        fitness_instance = __import__(fitness_class, globals(), locals(), ['object'], -1) 
+    #try:
+    fitness_instance = __import__(fitness_class, globals(), locals(), ['object'], -1) 
      
-    except:
-        fitness_instance = "ERROR: Class: Verifier. Method: verify_fitness_insance. Message: Fitness not found"
-
+    #except:
+    #     fitness_instance = "ERROR: Class: Verifier. Method: verify_fitness_instance. Message: Fitness not found"
+  
+    print fitness_instance
     return fitness_instance
  
 
@@ -92,7 +94,7 @@ def verify_shared_fitness_instance(shared_fitness_class):
         shared_fitness_instance = __import__(shared_fitness_class, globals(), locals(), ['object'], -1) 
      
     except:
-        shared_fitness_instance = "ERROR: Class: Verifier. Method: shared_verify_fitness_insance. Message: Shared fitness not found"
+        shared_fitness_instance = "ERROR: Class: Verifier. Method: shared_verify_fitness_instance. Message: Shared fitness not found"
 
     return shared_fitness_instance
 
@@ -103,7 +105,7 @@ def verify_selection_instance(selection_class):
         selection_instance = __import__(selection_class, globals(), locals(), ['object'], -1) 
      
     except:
-        selection_instance = "ERROR: Class: Verifier. Method: verify_selection_insance. Message: Selection not found"
+        selection_instance = "ERROR: Class: Verifier. Method: verify_selection_instance. Message: Selection not found"
 
     return selection_instance
  
@@ -114,7 +116,7 @@ def verify_crossover_instance(crossover_class):
         crossover_instance = __import__(crossover_class, globals(), locals(), ['object'], -1) 
      
     except:
-        crossover_instance = "ERROR: Class: Verifier. Method: verify_crossover_insance. Message: Crossover not found"
+        crossover_instance = "ERROR: Class: Verifier. Method: verify_crossover_instance. Message: Crossover not found"
 
     return crossover_instance
  
@@ -129,8 +131,10 @@ def verify_mutation_instance(mutation_class):
 
     return mutation_instance
  
+#Verificar el sp y los demas valores
 #verificar las de cruza y mutacion y los valores extras.
-def verify_algorithm_settings(generations,population_size,decimal_precision,community_class,algorithm_class,representation_class,fitness_class,shared_fitness_class,selection_class,crossover_class,mutation_class,elitism_amount):
+def verify_algorithm_settings(generations,population_size,decimal_precision,community_class,algorithm_class,representation_class,
+                              fitness_class,shared_fitness_class,selection_class,crossover_class,mutation_class,elitism_amount):
       results = []
 
       if generations < 1:

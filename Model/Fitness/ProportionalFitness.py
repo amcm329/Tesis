@@ -8,7 +8,7 @@
 #Malo si se usan pocos elementos
 
 
-def assign_proportional_fitness(population,fitness_options):
+def assign_fitness(population,fitness_options):
     total_fitness = 0.0
     individuals = population.get_individuals()   
     for x in range(population.get_size()):

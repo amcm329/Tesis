@@ -5,11 +5,11 @@
 #Author: Castillo Medina Aarón Martín.
 
 #Orden ascendente para que pueda hacerse bien el ranking.
-def assign_linear_ranking_fitness(population,fitness_options):
+def assign_fitness(population,fitness_options):
     total_fitness = 0
-    sp = fitness_options['sp'] 
+    sp = fitness_options["sp_linear_ranking_fitness"] 
 
-    population.sort_individuals(self,"get_pareto_dominates",False)
+    population.sort_individuals("get_pareto_dominates",False)
     y = 1
          
     for individual in population.get_individuals():

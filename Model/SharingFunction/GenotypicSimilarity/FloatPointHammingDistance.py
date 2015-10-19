@@ -8,7 +8,7 @@ def calculate_distance(individual_i,individual_j,shareed_fitness_options):
     chromosome_i = individual_i.get_complete_chromosome()
     chromosome_j = individual_j.get_complete_chromosomse()
     hamming_distance = 0.0
-    epsilon = shared_fitness_options['epsilon']
+    epsilon = shared_fitness_options["epsilon_floatpoint_hamming_distance"]
 
     for x in range (len(chromosome_i)):
         gen_i = chromosome_i[x]

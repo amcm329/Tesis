@@ -48,11 +48,11 @@ class Individual:
 
 
       def get_pareto_dominated(self):
-          return self.__dominated
+          return self.__is_dominated
 
 
       def set_pareto_dominated(self,value):
-          self.__dominated = value     
+          self.__is_dominated = value     
 
       
       def get_fitness(self):

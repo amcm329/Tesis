@@ -70,7 +70,7 @@ def evaluate_subchromosomes(complete_chromosome,length_subchromosomes,vector_var
     variable_name=""
     decision_variables = {}    
     precision_string = "{0:." + str(decimal_precision) + "f}"
-    gray_coding = representation_options[0]
+    gray_coding = representation_options["gray_coding_binary_representation"]
     for i in range (0,len(length_subchromosomes)):
         m = length_subchromosomes[i]
         single_variable = vector_variables[i]

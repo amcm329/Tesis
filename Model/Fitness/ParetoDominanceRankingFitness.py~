@@ -6,7 +6,7 @@
 
 #Menos dominados -> mayor fitness -> ultima posicion
 
-def assign_pareto_dominance_ranking_fitness(population,fitness_options):
+def assign_fitness(population,fitness_options):
     total_fitness = 0.0
     position = 0
     position_dictionary = {}
@@ -29,22 +29,21 @@ def assign_pareto_dominance_ranking_fitness(population,fitness_options):
         position += 1
 
     #promediar los fitness con los mismos rangos
-    individuals = population.get_individuals():
+    individuals = population.get_individuals()
     for key in position_dictionary.keys():
-        for positions in position_dictionary[key]:
-            sume = 0.0
-            total = len(positions)
-            #Getting sume of fitnesses.
-            for position in positions:
-                sume += individual[position].get_fitness()
+        positions = position_dictionary[key]
+        total = len(positions)
+        sume = 0.0
+        
+        #Getting sume of fitnesses.    
+        for position in positions:
+            sume += individuals[position].get_fitness()
                  
-            #Setting average of fitnesses.
-            for position in positions:
-                indidivual[position].set_fitness(sume/total)
-
-    #Getting total fitness.     
-    for individual in population.get_individuals():
-        total_fitness += individual.get_fitness()
+        #Setting average of fitnesses.
+        for extra_position in positions:
+            individuals[extra_position].set_fitness(sume/total)
+            total_fitness += individuals[extra_position].get_fitness()
+        
 
     population.set_total_fitness(total_fitness) 
     population.calculate_population_properties()

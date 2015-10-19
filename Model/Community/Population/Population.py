@@ -6,7 +6,7 @@
 
 import operator as operador 
 import random as aleatorio 
-import Individual as individuo
+import Individual.Individual as individuo
 
 #Complete population flag will be used in the corresponding methods, not here.
 class Population:

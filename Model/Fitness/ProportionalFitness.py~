@@ -7,6 +7,7 @@
 #El fitness proporcional es numero de soluciones que domina x a y 
 #Malo si se usan pocos elementos
 
+
 def assign_proportional_fitness(population,fitness_options):
     total_fitness = 0.0
     individuals = population.get_individuals()   

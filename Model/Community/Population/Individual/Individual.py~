@@ -27,6 +27,9 @@ class Individual:
       def get_complete_chromosome(self):
           return self.__complete_chromosome
 
+      def get_vector_functions(self):
+          return self.__vector_functions
+
 
       def get_decision_variables(self):
           return self.__decision_variables
@@ -45,11 +48,11 @@ class Individual:
 
 
       def get_pareto_dominated(self):
-          return self.__dominated
+          return self.__is_dominated
 
 
       def set_pareto_dominated(self,value):
-          self.__dominated = value     
+          self.__is_dominated = value     
 
       
       def get_fitness(self):

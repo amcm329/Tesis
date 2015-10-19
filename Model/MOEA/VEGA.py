@@ -12,7 +12,6 @@
 
 #Agregar caso en que las poblaciones con los objetivos no sean pares.
 #corregir el final population
-#Agregar community_name
 #Ver si se shufflean los tamaños de los objetivos.
 
 
@@ -42,9 +41,14 @@ def create_subpopulations(comunidad,main_population):
     return subpopulations
 
 
-def vega_algorithm(generations,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,community_instance,community_name,representation_instance,representation_options,fitness_instance,fitness_method,fitness_options,shared_fitness_instance,shared_fitness_options,selection_instance,selection_method,selection_options,crossover_instance,crossover_method,crossover_options,mutation_instance,mutation_method,mutation_options,elitism_amount): 
+def execute_moea(generations,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,community_instance,
+                 representation_instance,representation_options,fitness_instance,fitness_options,shared_fitness_instance,shared_fitness_options,
+                 selection_instance,selection_options,crossover_instance,crossover_options,mutation_instance,mutation_options,elitism_amount): 
     final_information = [[]]*len(vector_functions)
-    comunidad = getattr(community_instance,community_name)(vector_functions,vector_variables,available_expressions,decimal_precision,representation_instance,representation_options,fitness_instance,fitness_method,fitness_options,shared_fitness_instance,shared_fitness_options,selection_instance,selection_method,selection_options,crossover_instance,crossover_method,crossover_options,mutation_instance,mutation_method,mutation_options)
+    comunidad = getattr(community_instance,"Community")(vector_functions,vector_variables,available_expressions,decimal_precision,
+                                                        representation_instance,representation_options,fitness_instance,fitness_options,
+                                                        shared_fitness_instance,shared_fitness_options,selection_instance,selection_options,
+                                                        crossover_instance,crossover_options,mutation_instance,mutation_options)
     parents = comunidad.init_population(population_size)
     #try:
 
@@ -60,10 +64,10 @@ def vega_algorithm(generations,population_size,vector_functions,vector_variables
                current_subpopulation = parents_subpopulations[y]
                comunidad.evaluate_population_functions(current_subpopulation)
                comunidad.calculate_population_pareto_dominance(current_subpopulation)
-               #aquí va a haber problema con el fitness.
+               #aquí va a haber problema con el fitness que se soluciono haciendo pura dominancia de pareto.
                comunidad.assign_population_fitness(current_subpopulation)
                final_information[y].append(comunidad.get_best_individual(current_subpopulation,y))
-               selected_parents_chromosomes = comunidad.execute_selection(current_subpopulation,y)
+               selected_parents_chromosomes = comunidad.execute_selection(current_subpopulation)
                for parent_chromosome in selected_parents_chromosomes: 
                    children_chromosomes.append(parent_chromosome)
                
