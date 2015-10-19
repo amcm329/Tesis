@@ -49,8 +49,8 @@ def start_sequence():
 
 
     #revisar por qué no dan los individuos que deben
-    selection_class = "Model.Operator.Selection.Roulette" 
-    #selection_class = "Model.Operator.Selection.StochasticUniversalSampling"
+    #selection_class = "Model.Operator.Selection.Roulette" 
+    selection_class = "Model.Operator.Selection.StochasticUniversalSampling"
     #selection_class = "Model.Operator.Selection.ProbabilisticTournament"
     selection_options = {"contenders_amount_probabilistic_tournament":8}
     

@@ -9,15 +9,13 @@
       <Technique name="Proportional Fitness" class="ProportionalFitness"/>
       <Technique name="Linear Scaling Fitness" class="LinearScalingFitness"/>
       <Technique name="Linear Ranking Fitness" class="LinearRankingFitness"/>
-      <Technique name="Non-Linear Ranking Fitness" class="NonLinearRankingFitness"/>
-      <Technique name="Pareto Dominance Ranking Fitness" class="ParetoDominanceRankingFitness"/> 
+      <Technique name="Non-Linear Ranking Fitness" class="NonLinearRankingFitness"/> 
    </Fitness>
 
    <SharingFunction location="Model.SharingFunction.">
       <Technique name="Binary Hamming Distance" class="GenotypicSimilarity.BinaryHammingDistance"/>
       <Technique name="Float Point Hamming Distance" class="GenotypicSimilarity.FloatPointHammingDistance"/>
       <Technique name="Euclidean Distance" class="PhenotypicSimilarity.EuclideanDistance"/>
-  
    </SharingFunction>
 
    <Selection location="Model.Operator.Selection.">

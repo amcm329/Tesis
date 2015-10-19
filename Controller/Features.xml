@@ -37,6 +37,9 @@
 
    <MOEA location="Model.MOEA.">
       <Technique name="V.E.G.A. (Vector Evaluated Genetic Algorithm)" class="VEGA"/>
+      <Technique name="M.O.G.A. (Multi Objective Genetic Algorithm)" class="MOGA"/>
+      <Technique name="N.S.G.A. II (Nondominated Sorting Genetic Algorithm)" class="NSGAII"/>
+      <Technique name="S.P.E.A. II (Strength Pareto Evolutionary Algorithm)" class="SPEAII"/>
    </MOEA>
 
 </Features>
