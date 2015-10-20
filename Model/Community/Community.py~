@@ -156,7 +156,6 @@ class Community:
             alpha_sharing_function = self.__shared_fitness_options["alpha_sharing_function"]
             result = 0.0
             dij = getattr(self.__shared_fitness_instance,"calculate_distance")(individual_i,individual_j,self.__shared_fitness_options)
-            print "DIJ: ",dij
             if dij < sigma:
                result = 1 - (dij/sigma)**alpha_sharing_function
 

@@ -71,9 +71,9 @@ class Population:
           aleatorio.shuffle(self.__population)
 
 
-      def print_population(self):
+      def print_features(self):
           print "Total fitness: " + str(self.__total_fitness)
-          print "Total expected value: " + str(self.__total_expected_values)
+          print "Total expected value: " + str(self.__total_expected_value)
           print "Individuals: "
           for x in range (self.__population_size):
               print "Number: " + str(x)

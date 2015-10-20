@@ -66,7 +66,6 @@ def execute_algorithm(generations,population_size,vector_functions,vector_variab
         crossover_instance = result_instances[6]
         mutation_instance = result_instances[7]
 
-        print "Hola"
         results = getattr(algorithm_instance,"execute_moea")(generations,population_size,vector_functions,vector_variables,available_expressions,
                                                              decimal_precision,community_instance,representation_instance,representation_options,
                                                              fitness_instance,fitness_options,shared_fitness_instance,shared_fitness_options,

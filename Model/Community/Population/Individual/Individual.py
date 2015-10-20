@@ -101,9 +101,8 @@ class Individual:
 
       def print_info(self):
            print "    Complete chromosome: " + str(self.__complete_chromosome)
-           print "    Decision variables: " + str(self.__evaluated_subchromosomes)
+           print "    Decision variables: " + str(self.__decision_variables)
            print "    Evaluated functions: " + str(self.__evaluated_functions)
            print "    Fitness: " + str(self.__fitness)
-           print "    Selection probabilites: " + str(self.__selection_probabilities)
-           print "    Expected values: " + str(self.__expected_values)
+           print "    Expected value: " + str(self.__expected_value)
            print "\n"

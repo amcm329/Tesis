@@ -217,7 +217,7 @@ class Community:
               parent_complete_chromosome = parents_population[x].get_complete_chromosome()
               children.add_individual(x + offset,parent_complete_chromosome)
 
-
+          #Verificar al mejor de la poblacion, probablemente no siempre sea el elemetno 0
       def get_best_individual(self,population,position):
           individuals = population.get_individuals()
           best_individual = individuals[0].get_decision_variables()

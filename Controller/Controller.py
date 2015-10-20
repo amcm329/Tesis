@@ -41,9 +41,10 @@ def delete_features(features_filename,category_location,technique_name,technique
 #Agregar un código de error
 #Este metodo tiene que pasar primero por el parser.
 #poner excepciones al código
-def execute_algorithm(generations,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,community_class,
-                      algorithm_class,representation_class,representation_options,fitness_class,fitness_options,shared_fitness_class,shared_fitness_options,
-                      selection_class,selection_options,crossover_class,crossover_options,mutation_class,mutation_options,elitism_amount):
+def execute_algorithm(generations,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,
+                      community_class,algorithm_class,algorithm_options,representation_class,representation_options,
+                      fitness_class,fitness_options,shared_fitness_class,shared_fitness_options,selection_class,selection_options,
+                      crossover_class,crossover_options,mutation_class,mutation_options,elitism_amount):
     
     result_instances = vr.verify_algorithm_settings(generations,population_size,decimal_precision,community_class,algorithm_class,representation_class,
                                                     fitness_class,shared_fitness_class,selection_class,crossover_class,mutation_class,elitism_amount)
@@ -67,10 +68,10 @@ def execute_algorithm(generations,population_size,vector_functions,vector_variab
         mutation_instance = result_instances[7]
 
         results = getattr(algorithm_instance,"execute_moea")(generations,population_size,vector_functions,vector_variables,available_expressions,
-                                                             decimal_precision,community_instance,representation_instance,representation_options,
-                                                             fitness_instance,fitness_options,shared_fitness_instance,shared_fitness_options,
-                                                             selection_instance,selection_options,crossover_instance,crossover_options,
-                                                             mutation_instance,mutation_options,elitism_amount)
+                                             decimal_precision,community_instance,algorithm_options,representation_instance,representation_options,
+                                             fitness_instance,fitness_options,shared_fitness_instance,shared_fitness_options,
+                                             selection_instance,selection_options,crossover_instance,crossover_options,
+                                             mutation_instance,mutation_options,elitism_amount)
                 
     return results
 

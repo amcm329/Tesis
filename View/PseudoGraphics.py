@@ -22,8 +22,10 @@ def start_sequence():
     available_expressions = {"pi":math.pi,"cos":math.cos}#,"hola":math.tan}
     decimal_precision = 4
     community_class = "Model.Community.Community"
-    #algorithm_class = "Model.MOEA.VEGA"
-    algorithm_class = "Model.MOEA.MOGA"
+    algorithm_class = "Model.MOEA.VEGA"
+    #algorithm_class = "Model.MOEA.MOGA"
+    #algorithm_class = "Model.MOEA.SPEAII"
+    algorithm_options = {"length_external_set_e_spea_ii":40}
 
     representation_class = "Model.ChromosomalRepresentation.BinaryRepresentation"
     #representation_class = "Model.ChromosomalRepresentation.FloatPointRepresentation"
@@ -71,9 +73,9 @@ def start_sequence():
     elitism_amount = 1
 
     print controlador.execute_algorithm(generations,population_size,vector_functions,vector_variables,available_expressions,decimal_precision,
-                                        community_class,algorithm_class,representation_class,representation_options,fitness_class,fitness_options,
-                                        shared_fitness_class,shared_fitness_options,selection_class,selection_options,crossover_class,crossover_options,
-                                        mutation_class,mutation_options,elitism_amount)
+                                        community_class,algorithm_class,algorithm_options,representation_class,representation_options,
+                                        fitness_class,fitness_options,shared_fitness_class,shared_fitness_options,selection_class,selection_options,
+                                        crossover_class,crossover_options,mutation_class,mutation_options,elitism_amount)
 
     #print con.save_settings("Mutation","Otro","aaron","Hola")
     #print con.delete_settings("Mutation","Otro","aaron","Hola")
