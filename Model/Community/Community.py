@@ -208,14 +208,15 @@ class Community:
           return children
       
 
-      def elitism(self,parents,children,function,position,is_descendent,elitism_amount):
-          parents.sort_individuals(function,position,is_descendent)
-          children.sort_individuals(function,position,is_descendent)
+      def elitism(self,parents,children,function,is_descendent,elitism_amount):
+          parents.sort_individuals(function,is_descendent)
+          children.sort_individuals(function,is_descendent)
           parents_population = parents.get_individuals()
           offset = parents.get_size() - elitism_amount
           for x in range(0,elitism_amount):
               parent_complete_chromosome = parents_population[x].get_complete_chromosome()
               children.add_individual(x + offset,parent_complete_chromosome)
+
 
           #Verificar al mejor de la poblacion, probablemente no siempre sea el elemetno 0
       def get_best_individual(self,population,position):

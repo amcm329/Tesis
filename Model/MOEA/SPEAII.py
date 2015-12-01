@@ -19,8 +19,6 @@ def execute_moea(generations,population_size,vector_functions,vector_variables,a
     population_p = comunidad.init_population(population_size)
     external_set_e = comunidad.init_population(algorithm_options["length_external_set_e_spea_ii"])
 
-    #cleaning external_set 
-
     for x in range (1, generations + 1):
         print "Generation: ", x
         #Compute fitness of each individual in P and E.
@@ -28,11 +26,9 @@ def execute_moea(generations,population_size,vector_functions,vector_variables,a
         comunidad.calculate_population_pareto_dominance(population_p)
         comunidad.assign_population_fitness(population_p)
 
-        if x > 1:
-           comunidad.evaluate_population_functions(external_set_e)
-           comunidad.calculate_population_pareto_dominance(external_set_e)
-           comunidad.assign_population_fitness(external_set_e)
-
+        comunidad.evaluate_population_functions(external_set_e)
+        comunidad.calculate_population_pareto_dominance(external_set_e)
+        comunidad.assign_population_fitness(external_set_e)
 
         #Agregar primero todo lo de external set y luego todo lo de population
         external_set_e_list = []
@@ -41,7 +37,7 @@ def execute_moea(generations,population_size,vector_functions,vector_variables,a
         for current_individual in population_p.get_individuals():
             if current_individual.get_pareto_dominated() == 0:
                external_set_e_list.append(current_individual)
-
+                   
         #Añadiendo los no dominados de external_set_e a external_set_e_list
         if x > 1:
            for current_individual in external_set_e.get_individuals():
@@ -56,31 +52,29 @@ def execute_moea(generations,population_size,vector_functions,vector_variables,a
                if current_individual.get_pareto_dominated() > 0 and auxiliar < difference:
                   external_set_e_list.append(current_individual)
                   auxiliar += 1
-           print "1: "
          
         #Si despues de haber anadido todos se pasa entonces se hace truncamiento al azar hasta que sea igual al external set
         if len(external_set_e_list) > algorithm_options["length_external_set_e_spea_ii"]: 
               external_set_e_list = external_set_e_list[0:algorithm_options["length_external_set_e_spea_ii"]]
-              print "2: "
-        
+         
         auxiliar_external_set_e = []
         #adding elements to external set e (aqui esta el problema)
         for element in external_set_e_list:
             auxiliar_external_set_e.append(element.get_complete_chromosome())
                
-        print auxiliar_external_set_e #falta ver por que me estan dando cosas negativas
         external_set_e = comunidad.create_population(auxiliar_external_set_e)
-        external_set_e.print_features()
-
+        
         #Recalculating settings
         comunidad.evaluate_population_functions(external_set_e)
         comunidad.calculate_population_pareto_dominance(external_set_e)
         comunidad.assign_population_fitness(external_set_e)
-
-        #Executing selection and mutation to the mating pool  
+        
+        #Executing selection and mutation to the mating pool and evaluating it so we can find out the best individual 
         selected_parents_chromosomes = comunidad.execute_selection(external_set_e)
         external_set_e_child = comunidad.execute_crossover_and_mutation(selected_parents_chromosomes)
-        
+        comunidad.evaluate_population_functions(external_set_e_child)
+        comunidad.calculate_population_pareto_dominance(external_set_e_child)
+        comunidad.assign_population_fitness(external_set_e_child)
         
         for y in range(external_set_e_child.get_length_vector_functions()):        
             final_information[y].append(comunidad.get_best_individual(external_set_e_child,y))
