@@ -4,6 +4,7 @@
 #Version 2.0
 #Author: Castillo Medina Aarón Martín.
 
+#Agregado
 #Clase que será por ahora la parte "gráfica" del programa.
 
 import Controller.Controller as controlador
