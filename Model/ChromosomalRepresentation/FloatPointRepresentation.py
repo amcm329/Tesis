@@ -1,8 +1,9 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
-#Version 2.0
-#Author: Castillo Medina Aarón Martín.
+__author__ = "Castillo Medina Aarón Martin"
+__version__ = "2.0"
+__status__ = "Production"
 
 import random as aleatorio
 

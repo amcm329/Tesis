@@ -7,6 +7,7 @@
 import os
 import xml.etree.ElementTree as et
 
+
 def indent(element, level=0):
     i = "\n" + level*"   "
     if len(element):
@@ -24,46 +25,59 @@ def indent(element, level=0):
 
 
 def load_xml_features(features_filename):
-    category_id = 1
-    options = []
+    category_options = {}
     path = os.path.dirname(__file__)
-    tree = et.parse(path + "/" + features_filename)
+    tree = et.parse(path + "/XML/" + features_filename)
     root = tree.getroot()
 
     for category in root:
-        category_location = category.get('location')
-        technique_id = 1
-
-        for technique in category:
-            technique_name = technique.get('name')        
-            technique_class = technique.get('class')
-            options.append((category_id,technique_id,category_location,technique_name,technique_class))
-            
-            technique_id += 1
-                
-        category_id += 1
+        category_name = category.get("name")
+        division_options = {}
     
-    return options
+        for division in category:
+            division_name = division.get("name")
+            division_path = division.get("path")
+            technique_options = {}
+
+            for technique in division:
+                technique_name = technique.get("name")        
+                technique_class = technique.get("class")
+                parameters = []
+
+                for parameter in technique:
+                    parameter_name = parameter.get("name")
+                    parameter_value = parameter.get("value")
+                    parameters.append({"name":parameter_name,"value":parameter_value})
+
+                technique_options[technique_name] = {"class":technique_class,"parameter":parameters}
+            
+            division_options[division_name] = [division_path,technique_options]              
+  
+        category_options[category_name] = division_options    
+  
+    return category_options
 
 #LISTO
-def write_xml_features(features_filename,category_location,technique_name,technique_class,technique_method):
+def write_xml_features(features_filename,category_name,division_name,category_path,technique_name,technique_class):
     path = os.path.dirname(__file__)
     tree = et.parse(path + "/" + features_filename)
     root = tree.getroot()
-    category = root.find(category_location) 
-    new_child = et.SubElement(category, "Technique name=\"" + technique_name + "\" class=\"" + technique_class + "\"")
+    category = root.find(category_name)
+    division = category.find(division_name) 
+    new_child = et.SubElement(division, "Technique name=\"" + technique_name + "\" class=\"" + technique_class + "\"")
     indent(root)
     tree.write(path + "/" + features_filename)
    
 
 #En verifier verificar que el dato este antes de borrarlo, se usa con un load_settings y luego check.
-def delete_xml_features(features_filename,category_location,technique_name,technique_class,technique_method):
+def delete_xml_features(features_filename,category_name,division_name,category_path,technique_name,technique_class):
     path = os.path.dirname(__file__)
     tree = et.parse(path + "/" + features_filename)
     root = tree.getroot()
-    category = root.find(category_location)
+    category = root.find(category_name)
+    division = category.find(division_name)
 
-    for technique in category:
+    for technique in division:
         if technique.get('name') == technique_name and technique.get('class') == technique_class: 
            category.remove(technique)
     

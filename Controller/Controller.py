@@ -11,14 +11,14 @@ import Verifier as vr
 #OK.
 def load_features(features_filename):
     data = None
-    try:
-       data = pr.load_xml_features(features_filename)
+    #try:
+    data = pr.load_xml_features(features_filename)
     
-    except:
-       data = "ERROR"
+    #except:
+    #data = "ERROR"
        
-    return vr.verify_load_xml_features(data)    
-
+    #return vr.verify_load_xml_features(data)    
+    return data
 #OK
 def save_features(features_filename,category_location,technique_name,technique_class,technique_method):
     data = load_features(features_filename)

@@ -6,8 +6,8 @@
 
 #El archivo que dara origen a todo.
 
-import View.PseudoGraphics as pseudo
-pseudo.start_sequence()
+import View.MainWindow as main_window
+main_window.run()
 
 
 
